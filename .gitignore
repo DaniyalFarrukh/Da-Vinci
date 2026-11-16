@@ -1,0 +1,20 @@
+# Dependencies & build
+/node_modules
+/.next
+/out
+/build
+next-env.d.ts
+
+# Source media archives (kept untouched locally; optimized copies live in /public)
+/Photos
+/Videos
+
+# Environment & logs
+.env*
+!.env.example
+npm-debug.log*
+
+# Playwright / verification artifacts
+/playwright-report
+/test-results
+/screenshots
