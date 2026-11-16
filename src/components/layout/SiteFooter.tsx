@@ -1,0 +1,93 @@
+import Link from "next/link";
+import { siteConfig } from "@/config/site";
+import { Container } from "@/components/ui/Primitives";
+
+export function SiteFooter() {
+  return (
+    <footer className="bg-[var(--dark)] text-[var(--on-dark)] pt-16 pb-10">
+      <Container>
+        <div className="flex flex-col items-center text-center">
+          <p className="font-[family-name:var(--font-heading)] text-sm font-bold uppercase tracking-[3px] text-white/85">
+            There’s only one {siteConfig.brand.name}
+          </p>
+
+          <Link
+            href="/"
+            className="mt-4 inline-flex min-h-[44px] flex-col items-center justify-center text-[var(--on-dark)] no-underline"
+          >
+            <span className="font-[family-name:var(--font-heading)] text-3xl font-bold uppercase tracking-[4px]">
+              {siteConfig.brand.shortName}
+            </span>
+            <span className="mt-1 text-xs font-bold uppercase tracking-[4px] text-white/75">
+              {siteConfig.brand.subName}
+            </span>
+          </Link>
+
+          <p className="mt-5 text-sm text-white/75">
+            For press inquiries, please contact{" "}
+            <span className="text-[var(--accent)]">
+              {siteConfig.brand.pressEmail}
+            </span>
+          </p>
+        </div>
+
+        {/* 4-column location grid on desktop, 1-column stacked on mobile */}
+        <div className="mt-12 grid grid-cols-1 gap-8 border-t border-[var(--line-dark)] pt-10 text-center md:grid-cols-4 md:text-left">
+          {siteConfig.locations.map((loc) => (
+            <div key={loc.id} className="space-y-1.5">
+              <h4 className="font-[family-name:var(--font-heading)] text-lg font-bold uppercase tracking-[2px] text-[var(--on-dark)]">
+                {loc.city}
+              </h4>
+              <p className="text-sm text-white/75">{loc.addressLine1}</p>
+              <p className="text-sm text-white/75">{loc.addressLine2}</p>
+              <p className="pt-1">
+                <a
+                  href={loc.phoneHref}
+                  className="inline-flex min-h-[44px] items-center text-sm font-bold tracking-[1px] text-[var(--on-dark)] hover:text-[var(--accent)]"
+                >
+                  {loc.phone}
+                </a>
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {/* Socials & Legal Bar */}
+        <div className="mt-12 flex flex-col items-center justify-between gap-6 border-t border-[var(--line-dark)] pt-8 md:flex-row">
+          <div className="flex items-center gap-6">
+            {siteConfig.socials.map((soc) => (
+              <a
+                key={soc.label}
+                href={soc.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex min-h-[44px] items-center text-xs font-bold uppercase tracking-[2px] text-white/80 hover:text-[var(--accent)]"
+              >
+                {soc.label}
+              </a>
+            ))}
+          </div>
+
+          <div className="flex flex-wrap items-center justify-center gap-5 text-xs text-white/65">
+            <span>
+              © {siteConfig.brand.copyrightYear} {siteConfig.brand.name}. All
+              Rights Reserved.
+            </span>
+            <Link
+              href="/privacy-policy"
+              className="inline-flex min-h-[44px] items-center hover:text-[var(--accent)]"
+            >
+              Privacy Policy
+            </Link>
+            <Link
+              href="/accessibility"
+              className="inline-flex min-h-[44px] items-center hover:text-[var(--accent)]"
+            >
+              Accessibility
+            </Link>
+          </div>
+        </div>
+      </Container>
+    </footer>
+  );
+}

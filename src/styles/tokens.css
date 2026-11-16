@@ -1,0 +1,32 @@
+:root {
+  /* Palette (matching observed apaaesthetic.com tokens) */
+  --bg: #fafaf4;
+  --ink: #1a1a1a;
+  --mute: #4a4a46;
+  --accent: #a2d1dc;
+  --dark: #1a1a1a;
+  --dark-deep: #000000;
+  --on-dark: #ffffff;
+  --line: rgba(26, 26, 26, 0.16);
+  --line-dark: rgba(255, 255, 255, 0.22);
+
+  /* Layout & Spacing */
+  --header-h: 88px;
+  --container-max: 1400px;
+  --gutter-mobile: 20px;
+  --gutter-desktop: 28px;
+  --section-py-mobile: 56px;
+  --section-py-desktop: 80px;
+
+  /* Safe-area insets */
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+
+  /* Radii & Motion */
+  --radius-none: 0px;
+  --ease-wipe: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-wipe: 0.4s;
+  --dur-reveal: 1s;
+}
