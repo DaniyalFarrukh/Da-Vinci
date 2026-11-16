@@ -4,6 +4,7 @@
 /out
 /build
 next-env.d.ts
+tsconfig.tsbuildinfo
 
 # Source media archives (kept untouched locally; optimized copies live in /public)
 /Photos
