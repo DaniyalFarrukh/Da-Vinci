@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import { galleryCases } from "@/config/pages";
 
@@ -37,16 +38,29 @@ export function GalleryFilterGrid() {
 
       <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
         {items.map((item) => (
-          <div
+          <article
             key={item.id}
-            className="flex aspect-[4/3] flex-col items-center justify-center border border-[var(--line)] bg-white/60 p-6 text-center"
+            className="group relative aspect-[4/3] overflow-hidden bg-[var(--dark)]"
           >
-            <span className="text-[11px] font-bold uppercase tracking-[2px] text-[var(--accent)]">
-              {item.category}
-            </span>
-            <h3 className="mt-2 text-lg">{item.title}</h3>
-            <p className="mt-2 text-xs text-[var(--mute)]">{item.note}</p>
-          </div>
+            <Image
+              src={item.image}
+              alt={item.title}
+              fill
+              sizes="(max-width: 767px) 100vw, 33vw"
+              className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+            />
+            <div
+              className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"
+              aria-hidden="true"
+            />
+            <div className="absolute inset-x-0 bottom-0 p-5 text-[var(--on-dark)]">
+              <span className="text-[11px] font-bold uppercase tracking-[2px] text-[var(--accent)]">
+                {item.category}
+              </span>
+              <h3 className="mt-1 text-lg">{item.title}</h3>
+              <p className="mt-1 text-xs text-white/75">{item.note}</p>
+            </div>
+          </article>
         ))}
       </div>
     </div>

@@ -34,16 +34,22 @@ for (const file of files) {
   }
 
   const inputPath = path.join(SOURCE_DIR, file);
-  const pipeline = sharp(inputPath).rotate().resize({
-    width: 1600,
-    withoutEnlargement: true,
-  });
+  const pipeline = sharp(inputPath)
+    .rotate()
+    .resize({
+      width: 2400,
+      kernel: sharp.kernel.lanczos3,
+      withoutEnlargement: false,
+    })
+    .normalize()
+    .modulate({ brightness: 1.04, saturation: 1.07 })
+    .sharpen({ sigma: 1.0, m1: 1.2, m2: 0.4 });
 
   const webpPath = path.join(OUT_DIR, `${slug}.webp`);
   const avifPath = path.join(OUT_DIR, `${slug}.avif`);
 
-  await pipeline.clone().webp({ quality: 82 }).toFile(webpPath);
-  await pipeline.clone().avif({ quality: 65 }).toFile(avifPath);
+  await pipeline.clone().webp({ quality: 94 }).toFile(webpPath);
+  await pipeline.clone().avif({ quality: 78 }).toFile(avifPath);
 
   const webpSize = (fs.statSync(webpPath).size / 1024).toFixed(1);
   const avifSize = (fs.statSync(avifPath).size / 1024).toFixed(1);

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
 import { Container } from "@/components/ui/Primitives";
@@ -13,12 +14,21 @@ export function SiteFooter() {
 
           <Link
             href="/"
-            className="mt-4 inline-flex min-h-[44px] flex-col items-center justify-center text-[var(--on-dark)] no-underline"
+            className="mt-5 inline-flex min-h-[44px] flex-col items-center justify-center gap-3 text-[var(--on-dark)] no-underline"
           >
+            <span className="relative h-24 w-20 overflow-hidden rounded-[12%] border border-white/20 shadow-lg">
+              <Image
+                src="/images/da-vinci-crest.webp"
+                alt="da Vinci Dental Works crest"
+                fill
+                sizes="80px"
+                className="object-cover"
+              />
+            </span>
             <span className="font-[family-name:var(--font-heading)] text-3xl font-bold uppercase tracking-[4px]">
               {siteConfig.brand.shortName}
             </span>
-            <span className="mt-1 text-xs font-bold uppercase tracking-[4px] text-white/75">
+            <span className="text-xs font-bold uppercase tracking-[4px] text-white/75">
               {siteConfig.brand.subName}
             </span>
           </Link>

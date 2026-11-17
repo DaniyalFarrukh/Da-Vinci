@@ -121,57 +121,66 @@ export const teamMembers = [
 export const galleryCases = [
   {
     id: "g-1",
-    title: "Placeholder Case 01",
+    title: "Porcelain Veneer Architecture",
     category: "Veneers",
-    note: "TODO: Supply patient before/after photography & clinical notes",
+    note: "Hand-layered feldspathic ceramics",
+    image: "/images/case-smile-01.webp",
   },
   {
     id: "g-2",
-    title: "Placeholder Case 02",
+    title: "Full-Arch Smile Harmony",
     category: "Full Makeover",
-    note: "TODO: Supply patient before/after photography & clinical notes",
+    note: "Comprehensive aesthetic & occlusal balance",
+    image: "/images/case-smile-03.webp",
   },
   {
     id: "g-3",
-    title: "Placeholder Case 03",
-    category: "Implant & Surgical",
-    note: "TODO: Supply patient before/after photography & clinical notes",
+    title: "Architectural Smile Design",
+    category: "Veneers",
+    note: "Natural enamel translucency & contour",
+    image: "/images/case-smile-02.webp",
   },
   {
     id: "g-4",
-    title: "Placeholder Case 04",
-    category: "Veneers",
-    note: "TODO: Supply patient before/after photography & clinical notes",
+    title: "3D Arch Calibration",
+    category: "Full Makeover",
+    note: "Digital planning & analog ceramic craft",
+    image: "/images/lab-model-sculpting.webp",
   },
   {
     id: "g-5",
-    title: "Placeholder Case 05",
-    category: "Full Makeover",
-    note: "TODO: Supply patient before/after photography & clinical notes",
+    title: "Precision Margin Craft",
+    category: "Veneers",
+    note: "Magnification-guided adhesive bonding",
+    image: "/images/surgical-loupes-closeup.webp",
   },
   {
     id: "g-6",
-    title: "Placeholder Case 06",
+    title: "Guided Implant Reconstruction",
     category: "Implant & Surgical",
-    note: "TODO: Supply patient before/after photography & clinical notes",
+    note: "3D radiographic & surgical planning",
+    image: "/images/digital-planning-display.webp",
   },
   {
     id: "g-7",
-    title: "Placeholder Case 07",
-    category: "Veneers",
-    note: "TODO: Supply patient before/after photography & clinical notes",
+    title: "Surgical Team Precision",
+    category: "Implant & Surgical",
+    note: "Full-arch surgical rehabilitation",
+    image: "/images/surgical-precision-duo.webp",
   },
   {
     id: "g-8",
-    title: "Placeholder Case 08",
+    title: "Bespoke Studio Consultation",
     category: "Full Makeover",
-    note: "TODO: Supply patient before/after photography & clinical notes",
+    note: "Private diagnostic smile evaluation",
+    image: "/images/hallway-consultation.webp",
   },
   {
     id: "g-9",
-    title: "Placeholder Case 09",
+    title: "Interdisciplinary Surgical Care",
     category: "Implant & Surgical",
-    note: "TODO: Supply patient before/after photography & clinical notes",
+    note: "Collaborative surgical & restorative execution",
+    image: "/images/surgical-team-hands-on.webp",
   },
 ] as const;
 
@@ -250,15 +259,62 @@ export const buzzItems = [
   },
 ] as const;
 
-export const testimonialItems = Array.from({ length: 6 }, (_, i) => ({
-  id: `testimonial-${i + 1}`,
-  name: `TODO: Patient ${String(i + 1).padStart(2, "0")}`,
-  location: "TODO: City",
-  quote:
-    "TODO: Supply verified patient testimonial quote describing their consultation, treatment experience, and outcome.",
-  image: "/images/da-vinci-emblem.webp",
-  alt: "Placeholder patient testimonial portrait",
-}));
+export const testimonialItems = [
+  {
+    id: "testimonial-1",
+    name: "TODO: Patient 01",
+    location: "Chicago",
+    quote:
+      "TODO: Supply verified patient testimonial quote describing their consultation, treatment experience, and outcome.",
+    image: "/images/case-smile-01.webp",
+    alt: "Patient smile transformation portrait",
+  },
+  {
+    id: "testimonial-2",
+    name: "TODO: Patient 02",
+    location: "Chicago",
+    quote:
+      "TODO: Supply verified patient testimonial quote describing their consultation, treatment experience, and outcome.",
+    image: "/images/case-smile-02.webp",
+    alt: "Patient smile transformation portrait",
+  },
+  {
+    id: "testimonial-3",
+    name: "TODO: Patient 03",
+    location: "TODO: City 2",
+    quote:
+      "TODO: Supply verified patient testimonial quote describing their consultation, treatment experience, and outcome.",
+    image: "/images/case-smile-03.webp",
+    alt: "Patient smile transformation portrait",
+  },
+  {
+    id: "testimonial-4",
+    name: "TODO: Patient 04",
+    location: "TODO: City 3",
+    quote:
+      "TODO: Supply verified patient testimonial quote describing their consultation, treatment experience, and outcome.",
+    image: "/images/hero-atelier.webp",
+    alt: "da Vinci Dental Works private studio",
+  },
+  {
+    id: "testimonial-5",
+    name: "TODO: Patient 05",
+    location: "TODO: City 4",
+    quote:
+      "TODO: Supply verified patient testimonial quote describing their consultation, treatment experience, and outcome.",
+    image: "/images/hallway-consultation.webp",
+    alt: "Clinical consultation",
+  },
+  {
+    id: "testimonial-6",
+    name: "TODO: Patient 06",
+    location: "Chicago",
+    quote:
+      "TODO: Supply verified patient testimonial quote describing their consultation, treatment experience, and outcome.",
+    image: "/images/lab-model-sculpting.webp",
+    alt: "Master ceramist sculpting",
+  },
+] as const;
 
 export const blogPosts = [
   {

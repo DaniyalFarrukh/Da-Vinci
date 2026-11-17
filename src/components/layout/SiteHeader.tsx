@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { siteConfig } from "@/config/site";
@@ -107,20 +108,36 @@ export function SiteHeader() {
           {/* Mobile left spacer to keep brand centered on mobile */}
           <div className="w-11 shrink-0 md:hidden" aria-hidden="true" />
 
-          {/* Brand wordmark */}
+          {/* Brand crest + wordmark */}
           <Link
             href="/"
-            className="flex min-h-[44px] flex-col items-center justify-center text-center no-underline text-current md:items-start md:text-left"
+            className="flex min-h-[44px] items-center gap-3 no-underline text-current"
           >
-            <span className="font-[family-name:var(--font-heading)] text-xl font-bold uppercase tracking-[3px] leading-none">
-              {siteConfig.brand.shortName}
-            </span>
             <span
-              className={`mt-1 text-[10px] font-bold uppercase tracking-[3px] leading-none ${
-                scrolled ? "text-[var(--mute)]" : "text-white/80"
+              className={`relative h-11 w-11 shrink-0 overflow-hidden rounded-[14%] border transition-colors ${
+                scrolled ? "border-[var(--ink)]/20" : "border-white/30"
               }`}
             >
-              {siteConfig.brand.subName}
+              <Image
+                src="/images/da-vinci-mark.webp"
+                alt="da Vinci Dental Works crest"
+                fill
+                priority
+                sizes="44px"
+                className="object-cover"
+              />
+            </span>
+            <span className="flex flex-col items-start text-left">
+              <span className="font-[family-name:var(--font-heading)] text-xl font-bold uppercase tracking-[3px] leading-none">
+                {siteConfig.brand.shortName}
+              </span>
+              <span
+                className={`mt-1 text-[10px] font-bold uppercase tracking-[3px] leading-none ${
+                  scrolled ? "text-[var(--mute)]" : "text-white/80"
+                }`}
+              >
+                {siteConfig.brand.subName}
+              </span>
             </span>
           </Link>
 

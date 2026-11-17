@@ -2,6 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { BackgroundSlideshow } from "@/components/home/BackgroundSlideshow";
 import { HeroMedia } from "@/components/home/HeroMedia";
+import { BeforeAfterGrid } from "@/components/sections/BeforeAfterGrid";
+import { LuxuryCarousel } from "@/components/ui/LuxuryCarousel";
 import { ActionLink, Container, Reveal, Section } from "@/components/ui/Primitives";
 import { homeContent } from "@/config/home";
 
@@ -104,7 +106,7 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* 4. 3x3 Before & After Grid (9 cards, labeled placeholders until real patient photos are supplied) */}
+      {/* 4. 3x3 Before & After Grid + Featured Carousel */}
       <Section id="before-after">
         <Container>
           <Reveal className="mx-auto max-w-2xl text-center">
@@ -112,19 +114,21 @@ export default function HomePage() {
             <p className="mt-4 text-[var(--mute)]">{beforeAfter.subtitle}</p>
           </Reveal>
 
-          <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
-            {beforeAfter.cases.map((item) => (
-              <Reveal key={item.id}>
-                <div className="flex aspect-[4/3] flex-col items-center justify-center border border-[var(--line)] bg-white/60 p-6 text-center">
-                  <span className="font-[family-name:var(--font-heading)] text-lg font-bold uppercase tracking-[2px] text-[var(--ink)]">
-                    {item.label}
-                  </span>
-                  <span className="mt-2 text-xs uppercase tracking-[1.5px] text-[var(--mute)]">
-                    {item.note}
-                  </span>
-                </div>
-              </Reveal>
-            ))}
+          <Reveal className="mx-auto mt-10 max-w-4xl">
+            <LuxuryCarousel
+              aspectClass="aspect-[16/9]"
+              items={beforeAfter.cases.slice(0, 4).map((c) => ({
+                id: c.id,
+                src: c.image,
+                alt: c.alt,
+                title: c.label,
+                subtitle: c.note,
+              }))}
+            />
+          </Reveal>
+
+          <div className="mt-10">
+            <BeforeAfterGrid />
           </div>
 
           <div className="mt-10 flex justify-center">
@@ -223,7 +227,7 @@ export default function HomePage() {
         </Container>
       </Section>
 
-      {/* 8. Media Buzz Section (placeholder press tiles — no invented outlets) */}
+      {/* 8. Media Buzz Section (real clinical & symposium imagery) */}
       <Section id="media-buzz">
         <Container>
           <Reveal className="mx-auto max-w-2xl text-center">
@@ -239,14 +243,25 @@ export default function HomePage() {
           <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
             {mediaBuzz.tiles.map((tile) => (
               <Reveal key={tile.id}>
-                <div className="flex min-h-[160px] flex-col items-center justify-center border border-[var(--line)] bg-white/60 p-6 text-center">
-                  <span className="font-[family-name:var(--font-heading)] text-base font-bold uppercase tracking-[2px] text-[var(--ink)]">
-                    {tile.label}
-                  </span>
-                  <span className="mt-2 text-xs uppercase tracking-[1.5px] text-[var(--mute)]">
-                    {tile.note}
-                  </span>
-                </div>
+                <article className="group relative aspect-[4/3] overflow-hidden bg-[var(--dark)]">
+                  <Image
+                    src={tile.image}
+                    alt={tile.alt}
+                    fill
+                    sizes="(max-width: 767px) 100vw, 33vw"
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                  />
+                  <div
+                    className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"
+                    aria-hidden="true"
+                  />
+                  <div className="absolute inset-x-0 bottom-0 p-5 text-[var(--on-dark)]">
+                    <span className="font-[family-name:var(--font-heading)] text-base font-bold uppercase tracking-[2px]">
+                      {tile.label}
+                    </span>
+                    <p className="mt-1 text-xs text-white/75">{tile.note}</p>
+                  </div>
+                </article>
               </Reveal>
             ))}
           </div>

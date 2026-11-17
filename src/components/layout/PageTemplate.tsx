@@ -155,17 +155,28 @@ export function TransformationShowcase() {
         </Reveal>
         <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
           {cases.map((item) => (
-            <div
+            <article
               key={item.id}
-              className="flex aspect-[4/3] flex-col items-center justify-center border border-[var(--line)] bg-white/60 p-6 text-center"
+              className="group relative aspect-[4/3] overflow-hidden bg-[var(--dark)]"
             >
-              <span className="font-[family-name:var(--font-heading)] text-lg font-bold uppercase tracking-[2px]">
-                {item.label}
-              </span>
-              <span className="mt-2 text-xs uppercase tracking-[1.5px] text-[var(--mute)]">
-                {item.note}
-              </span>
-            </div>
+              <Image
+                src={item.image}
+                alt={item.alt}
+                fill
+                sizes="(max-width: 767px) 100vw, 33vw"
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+              />
+              <div
+                className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"
+                aria-hidden="true"
+              />
+              <div className="absolute inset-x-0 bottom-0 p-5 text-[var(--on-dark)]">
+                <span className="font-[family-name:var(--font-heading)] text-base font-bold uppercase tracking-[2px]">
+                  {item.label}
+                </span>
+                <p className="mt-1 text-xs text-white/75">{item.note}</p>
+              </div>
+            </article>
           ))}
         </div>
         <div className="mt-10 flex justify-center">
