@@ -15,7 +15,7 @@ export interface CarouselItem {
 export function LuxuryCarousel({
   items,
   aspectClass = "aspect-[16/10]",
-  autoPlayMs = 4500,
+  autoPlayMs = 3800,
 }: {
   items: readonly CarouselItem[];
   aspectClass?: string;

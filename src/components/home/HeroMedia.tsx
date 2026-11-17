@@ -2,45 +2,51 @@
 
 import gsap from "gsap";
 import Image from "next/image";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type HeroSlide =
-  | { type: "video"; src: string; poster: string; alt: string }
-  | { type: "image"; src: string; alt: string };
+  | { type: "video"; src: string; poster: string; alt: string; durationMs: number }
+  | { type: "image"; src: string; alt: string; durationMs: number };
 
-// Client-only photos & videos from D:\Da Vinci\Photos and D:\Da Vinci\Videos (no chairs/rooms)
-const CLIENT_HERO_SLIDES: readonly HeroSlide[] = [
+// Person-focused photos & videos only (Dr. Shuaib Malik)
+const HERO_SLIDES: readonly HeroSlide[] = [
   {
     type: "image",
-    src: "/images/surgical-team-hands-on.webp",
-    alt: "Dr. Shuaib Malik leading hands-on surgical collaboration",
+    src: "/images/founder-xray-portrait.webp",
+    alt: "Dr. Shuaib Malik presenting in front of panoramic radiograph",
+    durationMs: 3800,
   },
   {
     type: "video",
     src: "/videos/clip-02.mp4",
     poster: "/images/founder-xray-portrait.webp",
     alt: "Dr. Shuaib Malik clinical & surgical reel",
+    durationMs: 6500,
   },
   {
     type: "image",
-    src: "/images/lab-model-sculpting.webp",
-    alt: "Dr. Shuaib Malik and master ceramist sculpting 3D arch restoration",
+    src: "/images/lecture-zygomatic-wide.webp",
+    alt: "Dr. Shuaib Malik lecturing on surgical protocol",
+    durationMs: 3800,
   },
   {
     type: "image",
-    src: "/images/digital-planning-display.webp",
-    alt: "Dr. Shuaib Malik presenting digital surgical and smile planning",
+    src: "/images/hallway-consultation.webp",
+    alt: "Dr. Shuaib Malik in studio consultation",
+    durationMs: 3800,
   },
   {
     type: "video",
     src: "/videos/clip-05.mp4",
-    poster: "/images/surgical-loupes-closeup.webp",
-    alt: "Precision surgical & restorative work in action",
+    poster: "/images/surgical-training-duo.webp",
+    alt: "Dr. Shuaib Malik surgical training reel",
+    durationMs: 6500,
   },
   {
     type: "image",
-    src: "/images/harvard-mgh-team.webp",
-    alt: "Dr. Shuaib Malik with surgical colleagues",
+    src: "/images/keynote-stage-thank-you.webp",
+    alt: "Dr. Shuaib Malik keynote stage presentation",
+    durationMs: 3800,
   },
 ];
 
@@ -55,10 +61,7 @@ export function HeroMedia(_props: HeroMediaProps) {
   const [active, setActive] = useState(0);
   const [reducedMotion, setReducedMotion] = useState(false);
   const slideRefs = useRef<(HTMLDivElement | null)[]>([]);
-
-  const next = useCallback(() => {
-    setActive((i) => (i + 1) % CLIENT_HERO_SLIDES.length);
-  }, []);
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -68,21 +71,37 @@ export function HeroMedia(_props: HeroMediaProps) {
     return () => mq.removeEventListener("change", onChange);
   }, []);
 
+  // Recurring slideshow timer tailored per slide (3.8s photo, 6.5s video)
   useEffect(() => {
     if (reducedMotion) return;
-    const timer = window.setInterval(next, 5000);
-    return () => window.clearInterval(timer);
-  }, [reducedMotion, next]);
+    const ms = HERO_SLIDES[active]?.durationMs ?? 3800;
+    const timer = window.setTimeout(() => {
+      setActive((i) => (i + 1) % HERO_SLIDES.length);
+    }, ms);
+    return () => window.clearTimeout(timer);
+  }, [active, reducedMotion]);
 
+  // GSAP Ken Burns zoom + restart/play active video
   useEffect(() => {
     const el = slideRefs.current[active];
-    if (!el || reducedMotion) return;
+    const vid = videoRefs.current[active];
 
+    if (vid && !reducedMotion) {
+      vid.currentTime = 0;
+      vid.play().catch(() => {});
+    }
+
+    videoRefs.current.forEach((v, idx) => {
+      if (v && idx !== active) v.pause();
+    });
+
+    if (!el || reducedMotion) return;
+    const durSec = (HERO_SLIDES[active]?.durationMs ?? 3800) / 1000;
     const ctx = gsap.context(() => {
       gsap.fromTo(
         el,
         { scale: 1.06 },
-        { scale: 1.0, duration: 5.0, ease: "power1.out" }
+        { scale: 1.0, duration: durSec, ease: "power1.out" }
       );
     });
     return () => ctx.revert();
@@ -90,7 +109,7 @@ export function HeroMedia(_props: HeroMediaProps) {
 
   return (
     <div className="absolute inset-0 overflow-hidden bg-[var(--dark-deep)]">
-      {CLIENT_HERO_SLIDES.map((slide, idx) => {
+      {HERO_SLIDES.map((slide, idx) => {
         const isCurrent = idx === active;
         return (
           <div
@@ -105,12 +124,15 @@ export function HeroMedia(_props: HeroMediaProps) {
           >
             {slide.type === "video" && !reducedMotion ? (
               <video
+                ref={(el) => {
+                  videoRefs.current[idx] = el;
+                }}
                 className="h-full w-full object-cover object-top contrast-[1.04] saturate-[1.05]"
                 autoPlay
                 muted
                 loop
                 playsInline
-                preload="metadata"
+                preload="auto"
                 poster={slide.poster}
                 aria-label={slide.alt}
               >
@@ -131,19 +153,19 @@ export function HeroMedia(_props: HeroMediaProps) {
         );
       })}
 
-      {/* Posh editorial vignette for crisp white typography */}
+      {/* Editorial bottom gradient for legible typography */}
       <div
-        className="absolute inset-0 z-10 bg-gradient-to-t from-black/80 via-black/25 to-black/35"
+        className="absolute inset-0 z-10 bg-gradient-to-t from-black/80 via-black/20 to-black/30"
         aria-hidden="true"
       />
 
-      {/* Minimalist hero slideshow pagination */}
+      {/* Minimalist slide pagination */}
       <div
         className="absolute bottom-6 right-5 z-20 flex items-center gap-2 md:right-8"
         role="tablist"
         aria-label="Hero slideshow"
       >
-        {CLIENT_HERO_SLIDES.map((slide, idx) => {
+        {HERO_SLIDES.map((slide, idx) => {
           const isCurrent = idx === active;
           return (
             <button
