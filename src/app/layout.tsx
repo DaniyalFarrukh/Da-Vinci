@@ -1,11 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import { Barlow_Condensed, Jost } from "next/font/google";
+import { Jost, Oswald } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { siteConfig } from "@/config/site";
 
-const barlowCondensed = Barlow_Condensed({
+const oswald = Oswald({
   subsets: ["latin"],
   weight: ["600", "700"],
   variable: "--font-heading",
@@ -38,7 +38,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${barlowCondensed.variable} ${jost.variable}`}
+      className={`${oswald.variable} ${jost.variable}`}
     >
       <body className="flex min-h-svh flex-col antialiased">
         <SiteHeader />
