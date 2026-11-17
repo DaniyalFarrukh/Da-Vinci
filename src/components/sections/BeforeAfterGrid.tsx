@@ -8,8 +8,8 @@ export function BeforeAfterGrid() {
         <figure key={item.id} className="m-0 grid gap-[2px]">
           <div className="ba-photo aspect-[3/2]" tabIndex={0}>
             <Image
-              src={item.image}
-              alt={`${item.title} — before`}
+              src={item.beforeImage}
+              alt={`${item.title} — before treatment`}
               fill
               quality={92}
               sizes="(max-width: 767px) 100vw, 320px"
@@ -19,12 +19,12 @@ export function BeforeAfterGrid() {
           </div>
           <div className="ba-photo aspect-[3/2]" tabIndex={0}>
             <Image
-              src={item.image}
-              alt={`${item.title} — after`}
+              src={item.afterImage}
+              alt={`${item.title} — after treatment`}
               fill
               quality={92}
               sizes="(max-width: 767px) 100vw, 320px"
-              className="ba-photo-img object-cover"
+              className="ba-photo-img object-cover brightness-[1.05]"
             />
             <span className="ba-tag">After</span>
           </div>

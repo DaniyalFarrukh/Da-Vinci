@@ -65,30 +65,30 @@ export function BeforeAfterSliderHero() {
       }}
       className="relative flex min-h-[clamp(440px,78vh,760px)] items-end overflow-hidden bg-[var(--dark-deep)] text-[var(--on-dark)] select-none"
     >
-      {/* Before image underneath (desaturated pre-treatment tone) */}
+      {/* Before image underneath (pre-treatment tone) */}
       <Image
-        src={current.image}
-        alt={`${current.title} — before`}
+        src={current.beforeImage}
+        alt={`${current.title} — before treatment`}
         fill
         priority
         quality={95}
         sizes="100vw"
-        className="object-cover grayscale contrast-[1.08] brightness-95"
+        className="object-cover"
       />
 
-      {/* After image clipped on top in full radiant color */}
+      {/* After image clipped on top in full bright porcelain finish */}
       <div
         className="absolute inset-0"
         style={{ clipPath: `inset(0 0 0 ${pos}%)` }}
       >
         <Image
-          src={current.image}
-          alt={`${current.title} — after`}
+          src={current.afterImage}
+          alt={`${current.title} — after treatment`}
           fill
           priority
           quality={95}
           sizes="100vw"
-          className="object-cover contrast-[1.04] saturate-[1.08]"
+          className="object-cover contrast-[1.06] brightness-[1.05] saturate-[1.08]"
         />
       </div>
 

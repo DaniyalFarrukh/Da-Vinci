@@ -124,6 +124,8 @@ export const galleryCases = [
     title: "Porcelain Veneer Architecture",
     category: "Veneers",
     note: "Hand-layered feldspathic ceramics",
+    beforeImage: "/images/case-smile-01-before.webp",
+    afterImage: "/images/case-smile-01.webp",
     image: "/images/case-smile-01.webp",
   },
   {
@@ -131,6 +133,8 @@ export const galleryCases = [
     title: "Full-Arch Smile Harmony",
     category: "Full Makeover",
     note: "Comprehensive aesthetic & occlusal balance",
+    beforeImage: "/images/case-smile-02-before.webp",
+    afterImage: "/images/case-smile-02.webp",
     image: "/images/case-smile-02.webp",
   },
   {
@@ -138,6 +142,8 @@ export const galleryCases = [
     title: "Refined Enamel Translucency",
     category: "Veneers",
     note: "Natural incisal halo & contour",
+    beforeImage: "/images/case-smile-03-before.webp",
+    afterImage: "/images/case-smile-03.webp",
     image: "/images/case-smile-03.webp",
   },
   {
@@ -145,6 +151,8 @@ export const galleryCases = [
     title: "Upper & Lower Veneer Harmony",
     category: "Veneers",
     note: "Balanced shade calibration",
+    beforeImage: "/images/teeth-case-04-before.webp",
+    afterImage: "/images/teeth-case-04.webp",
     image: "/images/teeth-case-04.webp",
   },
   {
@@ -152,6 +160,8 @@ export const galleryCases = [
     title: "Architectural Male Smile",
     category: "Full Makeover",
     note: "Custom ceramic contouring",
+    beforeImage: "/images/teeth-case-05-before.webp",
+    afterImage: "/images/teeth-case-05.webp",
     image: "/images/teeth-case-05.webp",
   },
   {
@@ -159,6 +169,8 @@ export const galleryCases = [
     title: "Gingival & Ceramic Balance",
     category: "Implant & Surgical",
     note: "Scalloped gingival & ceramic integration",
+    beforeImage: "/images/teeth-case-06-before.webp",
+    afterImage: "/images/teeth-case-06.webp",
     image: "/images/teeth-case-06.webp",
   },
 ] as const;
