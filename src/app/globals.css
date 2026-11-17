@@ -123,22 +123,32 @@
   transform: translateY(0);
 }
 
-/* Before / After grayscale-to-color hover effect */
+/* Before / After: Before starts monochrome (reveals color on hover), After is always full radiant color */
 .ba-photo {
   position: relative;
   overflow: hidden;
   background: #3a3a38;
 }
 
-.ba-photo-img {
+.ba-photo-before .ba-photo-img {
   filter: grayscale(1) contrast(1.06);
   transition: filter 0.35s ease, transform 0.6s ease;
 }
 
+.ba-photo-after .ba-photo-img {
+  filter: contrast(1.05) saturate(1.08) brightness(1.04);
+  transition: transform 0.6s ease;
+}
+
 @media (hover: hover) {
-  .ba-photo:hover .ba-photo-img,
-  .ba-photo:focus-within .ba-photo-img {
+  .ba-photo-before:hover .ba-photo-img,
+  .ba-photo-before:focus-within .ba-photo-img {
     filter: none;
+    transform: scale(1.03);
+  }
+
+  .ba-photo-after:hover .ba-photo-img,
+  .ba-photo-after:focus-within .ba-photo-img {
     transform: scale(1.03);
   }
 }
