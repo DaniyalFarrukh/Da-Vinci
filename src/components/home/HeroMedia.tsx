@@ -1,74 +1,13 @@
 "use client";
 
 import gsap from "gsap";
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
-type HeroSlide =
-  | {
-      type: "video";
-      src: string;
-      poster: string;
-      alt: string;
-      caption: string;
-      durationMs: number;
-    }
-  | {
-      type: "image";
-      src: string;
-      alt: string;
-      caption: string;
-      durationMs: number;
-    };
-
-// Person-focused photos & videos only (Dr. Shuaib Malik)
-const HERO_SLIDES: readonly HeroSlide[] = [
-  {
-    type: "image",
-    src: "/images/founder-xray-portrait.webp",
-    alt: "Dr. Shuaib Malik presenting in front of panoramic radiograph",
-    caption: "01 · Surgical & Facial Architecture",
-    durationMs: 4200,
-  },
-  {
-    type: "video",
-    src: "/videos/clip-02.mp4",
-    poster: "/images/founder-xray-portrait.webp",
-    alt: "Dr. Shuaib Malik clinical & surgical reel",
-    caption: "02 · Precision In Motion",
-    durationMs: 6500,
-  },
-  {
-    type: "image",
-    src: "/images/lecture-zygomatic-wide.webp",
-    alt: "Dr. Shuaib Malik lecturing on surgical protocol",
-    caption: "03 · Academic & Clinical Leadership",
-    durationMs: 4200,
-  },
-  {
-    type: "image",
-    src: "/images/hallway-consultation.webp",
-    alt: "Dr. Shuaib Malik in studio consultation",
-    caption: "04 · Bespoke Patient Consultation",
-    durationMs: 4200,
-  },
-  {
-    type: "video",
-    src: "/videos/clip-05.mp4",
-    poster: "/images/surgical-training-duo.webp",
-    alt: "Dr. Shuaib Malik surgical training reel",
-    caption: "05 · Hands-On Surgical Artistry",
-    durationMs: 6500,
-  },
-  {
-    type: "image",
-    src: "/images/keynote-stage-thank-you.webp",
-    alt: "Dr. Shuaib Malik keynote stage presentation",
-    caption: "06 · International Symposiums",
-    durationMs: 4200,
-  },
-];
+const HERO_VIDEO = {
+  src: "/videos/hero-section-video.mp4",
+  alt: "da Vinci Dental Works hero showcase video",
+} as const;
 
 interface LuxuryHeroProps {
   heading: string;
@@ -83,14 +22,11 @@ export function LuxuryHero({
   ctaLabel,
   ctaHref,
 }: LuxuryHeroProps) {
-  const [active, setActive] = useState(0);
   const [reducedMotion, setReducedMotion] = useState(false);
 
   const sectionRef = useRef<HTMLElement>(null);
-  const slideRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
   const copyRef = useRef<HTMLDivElement>(null);
-  const progressRefs = useRef<(HTMLSpanElement | null)[]>([]);
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -120,112 +56,44 @@ export function LuxuryHero({
     return () => ctx.revert();
   }, [reducedMotion]);
 
-  // Self-running slideshow timer
+  // Ensure hero video plays on mount when motion is allowed
   useEffect(() => {
-    if (reducedMotion) return;
-    const ms = HERO_SLIDES[active]?.durationMs ?? 4200;
-    const timer = window.setTimeout(() => {
-      setActive((i) => (i + 1) % HERO_SLIDES.length);
-    }, ms);
-    return () => window.clearTimeout(timer);
-  }, [active, reducedMotion]);
-
-  // GSAP Ken Burns motion + active video playback + gold progress bar fill
-  useEffect(() => {
-    const el = slideRefs.current[active];
-    const vid = videoRefs.current[active];
-    const bar = progressRefs.current[active];
-
+    const vid = videoRef.current;
     if (vid && !reducedMotion) {
-      vid.currentTime = 0;
       vid.play().catch(() => {});
     }
-
-    videoRefs.current.forEach((v, idx) => {
-      if (v && idx !== active) v.pause();
-    });
-
-    if (reducedMotion) return;
-
-    const durSec = (HERO_SLIDES[active]?.durationMs ?? 4200) / 1000;
-    const ctx = gsap.context(() => {
-      if (el) {
-        gsap.fromTo(
-          el,
-          { scale: 1.07 },
-          { scale: 1.0, duration: durSec, ease: "power1.out" }
-        );
-      }
-      if (bar) {
-        gsap.fromTo(
-          bar,
-          { scaleX: 0, transformOrigin: "left center" },
-          { scaleX: 1, duration: durSec, ease: "none" }
-        );
-      }
-    });
-
-    return () => ctx.revert();
-  }, [active, reducedMotion]);
+  }, [reducedMotion]);
 
   return (
     <section
       ref={sectionRef}
       className="relative flex min-h-svh items-end overflow-hidden bg-[#090908] text-[#FAF8F4]"
     >
-      {/* Full-bleed self-running Dr. Shuaib Malik media */}
+      {/* Full-bleed hero section video only */}
       <div className="absolute inset-0 overflow-hidden bg-[#090908]">
-        {HERO_SLIDES.map((slide, idx) => {
-          const isCurrent = idx === active;
-          return (
-            <div
-              key={`${slide.type}-${slide.src}`}
-              ref={(el) => {
-                slideRefs.current[idx] = el;
-              }}
-              aria-hidden={!isCurrent}
-              className={`absolute inset-0 transition-opacity duration-1000 ease-out ${
-                isCurrent ? "opacity-100 z-10" : "opacity-0 z-0"
-              }`}
-            >
-              {slide.type === "video" && !reducedMotion ? (
-                <video
-                  ref={(el) => {
-                    videoRefs.current[idx] = el;
-                  }}
-                  className="h-full w-full object-cover object-top contrast-[1.06] saturate-[1.04]"
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="auto"
-                  poster={slide.poster}
-                  aria-label={slide.alt}
-                >
-                  <source src={slide.src} type="video/mp4" />
-                </video>
-              ) : (
-                <Image
-                  src={slide.type === "video" ? slide.poster : slide.src}
-                  alt={slide.alt}
-                  fill
-                  priority={idx === 0}
-                  quality={100}
-                  sizes="100vw"
-                  className="object-cover object-top contrast-[1.06] saturate-[1.04]"
-                />
-              )}
-            </div>
-          );
-        })}
+        {!reducedMotion && (
+          <video
+            ref={videoRef}
+            className="h-full w-full object-cover object-center brightness-[1.06] contrast-[1.06] saturate-[1.06]"
+            autoPlay
+            muted
+            loop
+            playsInline
+            disablePictureInPicture
+            preload="auto"
+            aria-label={HERO_VIDEO.alt}
+          >
+            <source src={HERO_VIDEO.src} type="video/mp4" />
+          </video>
+        )}
 
         {/* Architectural obsidian & subtle champagne-gold vignettes */}
         <div
-          className="absolute inset-0 z-10 bg-gradient-to-b from-[#090908]/80 via-[#090908]/20 to-[#090908]/92 pointer-events-none"
+          className="absolute inset-0 z-10 bg-gradient-to-b from-[#090908]/55 via-transparent to-[#090908]/75 pointer-events-none"
           aria-hidden="true"
         />
         <div
-          className="absolute inset-0 z-10 bg-gradient-to-r from-[#090908]/75 via-[#090908]/25 to-transparent pointer-events-none"
+          className="absolute inset-0 z-10 bg-gradient-to-r from-[#090908]/55 via-[#090908]/10 to-transparent pointer-events-none"
           aria-hidden="true"
         />
         <div
@@ -234,23 +102,29 @@ export function LuxuryHero({
         />
       </div>
 
-      {/* Bottom Editorial Lockup (clean, minimal, exact reference layout) */}
-      <div className="relative z-20 mx-auto w-full max-w-[var(--container-max)] px-5 md:px-10 pt-[calc(var(--header-h)+24px)] pb-14 md:pb-20">
+      {/* Bottom Editorial Lockup (mobile-safe spacing & typography) */}
+      <div
+        className="relative z-20 mx-auto w-full max-w-[var(--container-max)] px-5 md:px-10 md:pb-20"
+        style={{
+          paddingTop: "calc(var(--header-h) + var(--safe-top) + 24px)",
+          paddingBottom: "calc(44px + var(--safe-bottom))",
+        }}
+      >
         <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <div ref={copyRef} className="max-w-xl">
             <h1
               data-hero-anim
-              className="text-4xl sm:text-5xl md:text-6xl leading-[1.08] text-[#FAF8F4]"
+              className="text-[30px] sm:text-5xl md:text-6xl leading-[1.08] text-[#FAF8F4]"
             >
               {heading}
             </h1>
             <p
               data-hero-anim
-              className="mt-4 max-w-md text-sm md:text-base text-[#FAF8F4]/85"
+              className="mt-3 sm:mt-4 max-w-md text-sm md:text-base text-[#FAF8F4]/85"
             >
               {subtitle}
             </p>
-            <div data-hero-anim className="mt-6">
+            <div data-hero-anim className="mt-5 sm:mt-6">
               <Link
                 href={ctaHref}
                 className="action-link text-xs md:text-sm tracking-[0.2em] text-[#FAF8F4]"
@@ -258,36 +132,6 @@ export function LuxuryHero({
                 {ctaLabel}
               </Link>
             </div>
-          </div>
-
-          {/* Minimalist Auto-Progressing Gold Reel Bars */}
-          <div
-            className="flex items-center gap-2 self-start md:self-end md:pb-1"
-            aria-label="Hero reel progress"
-          >
-            {HERO_SLIDES.map((slide, idx) => {
-              const isCurrent = idx === active;
-              return (
-                <button
-                  key={slide.src}
-                  type="button"
-                  aria-label={`View reel ${idx + 1}: ${slide.caption}`}
-                  onClick={() => setActive(idx)}
-                  className="flex h-11 items-center px-0.5 cursor-pointer"
-                >
-                  <span className="relative block h-[2px] w-7 md:w-9 overflow-hidden bg-white/30">
-                    {isCurrent && (
-                      <span
-                        ref={(el) => {
-                          progressRefs.current[idx] = el;
-                        }}
-                        className="absolute inset-0 block bg-[#C9A96E]"
-                      />
-                    )}
-                  </span>
-                </button>
-              );
-            })}
           </div>
         </div>
       </div>

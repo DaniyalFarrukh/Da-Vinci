@@ -3,6 +3,7 @@ import Link from "next/link";
 import { BackgroundSlideshow } from "@/components/home/BackgroundSlideshow";
 import { LuxuryHero } from "@/components/home/HeroMedia";
 import { BeforeAfterGrid } from "@/components/sections/BeforeAfterGrid";
+import { VideoReels } from "@/components/sections/VideoReels";
 import { LuxuryCarousel } from "@/components/ui/LuxuryCarousel";
 import { ActionLink, Container, Reveal, Section } from "@/components/ui/Primitives";
 import { homeContent } from "@/config/home";
@@ -274,6 +275,9 @@ export default function HomePage() {
               </Link>
             </div>
           </Reveal>
+          <div className="mt-12 text-left">
+            <VideoReels />
+          </div>
         </Container>
       </Section>
 

@@ -60,7 +60,7 @@ export function TeamGrid() {
               fill
               quality={100}
               sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 25vw"
-              className="object-cover"
+              className="object-cover object-[50%_15%]"
             />
             <div
               className="

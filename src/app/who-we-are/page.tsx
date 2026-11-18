@@ -24,6 +24,7 @@ export default function WhoWeArePage() {
   return (
     <>
       <PageHero
+        layout="split"
         title="Experience Intentional Dentistry"
         subtitle="A practice founded on surgical precision, restorative artistry, and personal care."
         image="/images/harvard-mgh-team.webp"

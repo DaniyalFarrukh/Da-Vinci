@@ -13,6 +13,8 @@ export default function FounderPage() {
     <>
       <PageHero
         grayscale
+        layout="split"
+        imageAspect="portrait"
         title="Dr. Shuaib Malik"
         subtitle="Founder · Oral, Facial & Implant Surgeon"
         image="/images/founder-xray-portrait.webp"

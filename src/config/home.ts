@@ -8,8 +8,7 @@ export const homeContent = {
     desktopPoster: "/images/surgical-team-hands-on.webp",
     mobilePoster: "/images/da-vinci-emblem.webp",
     mobileVideo: "/videos/hero-mobile.mp4",
-    /** TODO: Add transcoded landscape hero MP4 (< 8 MB) once ffmpeg is approved */
-    desktopVideo: null as string | null,
+    desktopVideo: "/videos/hero-section-video.mp4" as string | null,
   },
   experienceIntro: {
     heading: "Experience a new kind of smile at da Vinci Dental Works",

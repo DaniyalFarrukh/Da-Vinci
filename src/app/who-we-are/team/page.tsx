@@ -10,6 +10,7 @@ export default function TeamPage() {
   return (
     <>
       <PageHero
+        layout="split"
         title="Meet Our Team"
         subtitle="Surgeons, restorative clinicians, and master ceramists united by one standard."
         image="/images/harvard-mgh-team.webp"

@@ -106,7 +106,7 @@ export function SiteHeader() {
       >
         <div className="mx-auto max-w-[var(--container-max)] px-4 md:px-7">
           {/* Top row: balanced spacer + centered crest & serif wordmark + right drawer toggle */}
-          <div className="flex h-[72px] md:h-[62px] items-center justify-between gap-1">
+          <div className="flex h-[72px] items-center justify-between gap-1">
             <div className="w-8 sm:w-11 shrink-0" aria-hidden="true" />
 
             <Link
@@ -145,60 +145,13 @@ export function SiteHeader() {
               </span>
             </button>
           </div>
-
-          {/* Desktop gold hairline divider */}
-          <div
-            className="hidden md:block mx-auto h-px w-full max-w-4xl bg-gradient-to-r from-transparent via-[#C9A96E]/60 to-transparent"
-            aria-hidden="true"
-          />
-
-          {/* Desktop centered secondary row navigation */}
-          <nav
-            aria-label="Primary"
-            className="hidden md:flex h-[48px] items-center justify-center gap-8 lg:gap-12"
-          >
-            {siteConfig.nav.map((item) =>
-              item.children ? (
-                <div
-                  key={item.label}
-                  className="nav-dropdown-trigger relative flex items-center"
-                >
-                  <Link
-                    href={item.href}
-                    className="inline-flex min-h-[44px] items-center text-[12px] lg:text-[13px] font-medium uppercase tracking-[0.22em] text-[#DFC38C] transition-colors hover:text-[#FAF8F4]"
-                  >
-                    {item.label}
-                  </Link>
-                  <div className="nav-dropdown-menu invisible absolute left-1/2 top-full min-w-[240px] -translate-x-1/2 translate-y-1 border border-[#C9A96E]/25 bg-[#090908]/95 py-2.5 opacity-0 shadow-2xl backdrop-blur-md transition-all duration-200">
-                    {item.children.map((child) => (
-                      <Link
-                        key={child.href}
-                        href={child.href}
-                        className="flex min-h-[44px] items-center px-5 text-[12px] font-medium uppercase tracking-[0.16em] text-[#FAF8F4]/90 transition-colors hover:bg-[#C9A96E]/10 hover:text-[#DFC38C]"
-                      >
-                        {child.label}
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              ) : (
-                <Link
-                  key={item.label}
-                  href={item.href}
-                  className="inline-flex min-h-[44px] items-center text-[12px] lg:text-[13px] font-semibold uppercase tracking-[0.22em] text-[#DFC38C] transition-colors hover:text-[#FAF8F4] border-b border-[#C9A96E]/50 hover:border-[#FAF8F4]"
-                >
-                  {item.label}
-                </Link>
-              )
-            )}
-          </nav>
         </div>
       </header>
 
-      {/* Full-height black drawer with accordion +/- submenus, focus trap, Escape, iOS scroll lock */}
+      {/* Side navigation drawer with accordion +/- submenus, focus trap, Escape, iOS scroll lock */}
       {drawerOpen && (
         <div
-          className="fixed inset-0 z-50 flex justify-end bg-black/60"
+          className="fixed inset-0 z-50 flex justify-end bg-black/55 backdrop-blur-[2px]"
           onClick={closeDrawer}
         >
           <aside
@@ -207,15 +160,15 @@ export function SiteHeader() {
             role="dialog"
             aria-modal="true"
             aria-label="Site navigation"
-            className="flex h-dvh w-full max-w-[400px] flex-col overflow-y-auto bg-[var(--dark-deep)] text-[var(--on-dark)] p-6"
+            className="flex h-dvh w-[78vw] max-w-[310px] sm:max-w-[380px] flex-col overflow-y-auto border-l border-[#C9A96E]/25 bg-[var(--dark-deep)]/95 text-[var(--on-dark)] p-5 sm:p-6 shadow-2xl"
             style={{
               paddingTop: "calc(24px + var(--safe-top))",
               paddingBottom: "calc(24px + var(--safe-bottom))",
             }}
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="mb-8 flex items-center justify-between border-b border-[var(--line-dark)] pb-4">
-              <span className="font-[family-name:var(--font-heading)] text-lg font-bold uppercase tracking-[3px]">
+            <div className="mb-6 flex items-center justify-between gap-2 border-b border-[var(--line-dark)] pb-4">
+              <span className="font-[family-name:var(--font-heading)] text-xs sm:text-lg font-bold uppercase tracking-[1.5px] sm:tracking-[3px] whitespace-nowrap">
                 {siteConfig.brand.name}
               </span>
               <button
@@ -238,7 +191,7 @@ export function SiteHeader() {
                       key={item.label}
                       href={item.href}
                       onClick={closeDrawer}
-                      className="flex min-h-[48px] items-center border-b border-[var(--line-dark)] py-3 font-[family-name:var(--font-heading)] text-xl font-bold uppercase tracking-[2px] text-[var(--on-dark)] hover:text-[var(--accent)]"
+                      className="flex min-h-[48px] items-center border-b border-[var(--line-dark)] py-3 font-[family-name:var(--font-heading)] text-base sm:text-xl font-bold uppercase tracking-[1.2px] sm:tracking-[2px] text-[var(--on-dark)] hover:text-[var(--accent)]"
                     >
                       {item.label}
                     </Link>
@@ -254,7 +207,7 @@ export function SiteHeader() {
                       <Link
                         href={item.href}
                         onClick={closeDrawer}
-                        className="flex min-h-[48px] flex-1 items-center py-3 font-[family-name:var(--font-heading)] text-xl font-bold uppercase tracking-[2px] text-[var(--on-dark)] hover:text-[var(--accent)]"
+                        className="flex min-h-[48px] flex-1 items-center py-3 font-[family-name:var(--font-heading)] text-base sm:text-xl font-bold uppercase tracking-[1.2px] sm:tracking-[2px] text-[var(--on-dark)] hover:text-[var(--accent)]"
                       >
                         {item.label}
                       </Link>
@@ -275,7 +228,7 @@ export function SiteHeader() {
                             key={child.href}
                             href={child.href}
                             onClick={closeDrawer}
-                            className="flex min-h-[44px] items-center text-sm uppercase tracking-[1.5px] text-white/80 hover:text-[var(--accent)]"
+                            className="flex min-h-[44px] items-center text-xs sm:text-sm uppercase tracking-[1px] sm:tracking-[1.5px] text-white/80 hover:text-[var(--accent)]"
                           >
                             {child.label}
                           </Link>

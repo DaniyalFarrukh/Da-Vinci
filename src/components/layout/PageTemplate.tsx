@@ -9,6 +9,8 @@ export function PageHero({
   image,
   alt,
   grayscale = false,
+  layout = "banner",
+  imageAspect = "square",
   ctaLabel,
   ctaHref,
 }: {
@@ -17,37 +19,97 @@ export function PageHero({
   image: string;
   alt: string;
   grayscale?: boolean;
+  layout?: "banner" | "split";
+  imageAspect?: "square" | "portrait";
   ctaLabel?: string;
   ctaHref?: string;
 }) {
-  return (
-    <section className="relative flex min-h-[70svh] items-end bg-[var(--dark-deep)] text-[var(--on-dark)]">
-      <Image
-        src={image}
-        alt={alt}
-        fill
-        priority
-        quality={100}
-        sizes="100vw"
-        className={`object-cover ${grayscale ? "grayscale contrast-105" : ""}`}
-      />
-      <div
-        className="absolute inset-0 bg-gradient-to-t from-[#090908]/90 via-[#090908]/45 to-[#090908]/75"
-        aria-hidden="true"
-      />
-      <Container className="relative z-10 pt-[calc(var(--header-h)+32px)] pb-14 md:pb-20">
-        <div className="max-w-2xl border-l-2 border-[#C9A96E] pl-6">
-          <h1 className="text-4xl md:text-6xl">{title}</h1>
-          <p className="mt-4 text-base md:text-lg text-white/85">{subtitle}</p>
-          {ctaLabel && ctaHref && (
-            <div className="mt-6">
-              <ActionLink href={ctaHref} dark>
-                {ctaLabel}
-              </ActionLink>
+  if (layout === "split") {
+    const frameClass =
+      imageAspect === "portrait"
+        ? "relative aspect-[2/3] w-full max-w-md mx-auto md:ml-auto md:mr-0 overflow-hidden border border-[#C9A96E]/35 bg-[#090908] shadow-[0_20px_60px_rgba(0,0,0,0.45)]"
+        : "relative aspect-[11/10] w-full overflow-hidden border border-[#C9A96E]/35 bg-[#090908] shadow-[0_20px_60px_rgba(0,0,0,0.45)]";
+
+    return (
+      <section
+        className="bg-[var(--dark-deep)] text-[var(--on-dark)] border-b border-[var(--line-dark)]"
+        style={{ paddingTop: "calc(var(--header-h) + var(--safe-top))" }}
+      >
+        <Container className="py-10 sm:py-12 md:py-16">
+          <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-12 md:gap-12">
+            <div className="md:col-span-5 border-l-2 border-[#C9A96E] pl-5 md:pl-6">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.08]">
+                {title}
+              </h1>
+              <p className="mt-4 text-sm sm:text-base md:text-lg text-white/85">
+                {subtitle}
+              </p>
+              {ctaLabel && ctaHref && (
+                <div className="mt-6">
+                  <ActionLink href={ctaHref} dark>
+                    {ctaLabel}
+                  </ActionLink>
+                </div>
+              )}
             </div>
-          )}
-        </div>
-      </Container>
+            <div className="md:col-span-7">
+              <div className={frameClass}>
+                <Image
+                  src={image}
+                  alt={alt}
+                  fill
+                  priority
+                  quality={100}
+                  sizes="(max-width: 767px) 100vw, 58vw"
+                  className={`object-contain ${
+                    grayscale ? "grayscale contrast-105" : ""
+                  }`}
+                />
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+    );
+  }
+
+  return (
+    <section
+      className="bg-[var(--dark-deep)] text-[var(--on-dark)]"
+      style={{ paddingTop: "calc(var(--header-h) + var(--safe-top))" }}
+    >
+      <div className="relative flex min-h-[54svh] sm:min-h-[60svh] md:min-h-[68svh] items-end overflow-hidden">
+        <Image
+          src={image}
+          alt={alt}
+          fill
+          priority
+          quality={100}
+          sizes="100vw"
+          className={`object-cover object-[50%_20%] brightness-[1.08] contrast-[1.06] saturate-[1.08] ${
+            grayscale ? "grayscale contrast-105" : ""
+          }`}
+        />
+        <div
+          className="absolute inset-0 bg-gradient-to-t from-[#090908]/75 via-[#090908]/10 via-45% to-transparent"
+          aria-hidden="true"
+        />
+        <Container className="relative z-10 py-12 md:py-16">
+          <div className="max-w-2xl border-l-2 border-[#C9A96E] pl-5 md:pl-6">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl">{title}</h1>
+            <p className="mt-4 text-sm sm:text-base md:text-lg text-white/85">
+              {subtitle}
+            </p>
+            {ctaLabel && ctaHref && (
+              <div className="mt-6">
+                <ActionLink href={ctaHref} dark>
+                  {ctaLabel}
+                </ActionLink>
+              </div>
+            )}
+          </div>
+        </Container>
+      </div>
     </section>
   );
 }
@@ -136,7 +198,7 @@ export function SplitBand({
                 fill
                 quality={100}
                 sizes="(max-width: 767px) 100vw, 50vw"
-                className="object-cover"
+                className="object-cover object-[50%_18%]"
               />
             </div>
           </Reveal>

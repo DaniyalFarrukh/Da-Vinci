@@ -55,7 +55,8 @@ export function VideoReels() {
             muted
             loop
             playsInline
-            preload="metadata"
+            disablePictureInPicture
+            preload="none"
             poster={reel.poster}
             aria-label={reel.label}
           >

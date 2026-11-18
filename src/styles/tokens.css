@@ -32,9 +32,3 @@
   --dur-wipe: 0.4s;
   --dur-reveal: 1s;
 }
-
-@media (min-width: 768px) {
-  :root {
-    --header-h: 112px;
-  }
-}
