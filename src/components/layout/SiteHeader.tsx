@@ -97,54 +97,64 @@ export function SiteHeader() {
     <>
       <header
         data-scrolled={scrolled ? "true" : "false"}
-        className={`fixed top-0 left-0 right-0 z-30 w-full transition-colors duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-30 w-full transition-all duration-300 ${
           scrolled
-            ? "bg-[var(--bg)] text-[var(--ink)] border-b border-[var(--line)]"
-            : "bg-transparent text-[var(--on-dark)] border-b border-transparent"
+            ? "bg-[#090908]/95 text-[#FAF8F4] border-b border-[#C9A96E]/25 backdrop-blur-md shadow-[0_10px_32px_rgba(0,0,0,0.45)]"
+            : "bg-gradient-to-b from-black/80 via-black/45 to-transparent text-[#FAF8F4] border-b border-transparent"
         }`}
         style={{ paddingTop: "var(--safe-top)" }}
       >
-        <div className="mx-auto flex h-[var(--header-h)] max-w-[var(--container-max)] items-center justify-between px-4 md:px-7">
-          {/* Mobile left spacer to keep brand centered on mobile */}
-          <div className="w-11 shrink-0 md:hidden" aria-hidden="true" />
+        <div className="mx-auto max-w-[var(--container-max)] px-4 md:px-7">
+          {/* Top row: balanced spacer + centered crest & serif wordmark + right drawer toggle */}
+          <div className="flex h-[72px] md:h-[62px] items-center justify-between gap-1">
+            <div className="w-8 sm:w-11 shrink-0" aria-hidden="true" />
 
-          {/* Brand crest + wordmark */}
-          <Link
-            href="/"
-            className="flex min-h-[44px] items-center gap-3 no-underline text-current"
-          >
-            <span
-              className={`relative h-11 w-11 shrink-0 overflow-hidden rounded-[14%] border transition-colors ${
-                scrolled ? "border-[var(--ink)]/20" : "border-white/30"
-              }`}
+            <Link
+              href="/"
+              className="flex min-h-[44px] min-w-0 items-center justify-center gap-1.5 sm:gap-2.5 md:gap-3.5 no-underline text-current group"
             >
-              <Image
-                src="/images/da-vinci-mark.webp"
-                alt="da Vinci Dental Works crest"
-                fill
-                priority
-                sizes="44px"
-                className="object-cover"
-              />
-            </span>
-            <span className="flex flex-col items-start text-left">
-              <span className="font-[family-name:var(--font-heading)] text-xl font-bold uppercase tracking-[3px] leading-none">
-                {siteConfig.brand.shortName}
+              <span className="relative h-7 w-7 sm:h-9 sm:w-9 shrink-0 overflow-hidden rounded-[18%] border border-[#C9A96E]/50 shadow-[0_0_16px_rgba(201,169,110,0.18)] transition-transform duration-300 group-hover:scale-[1.03]">
+                <Image
+                  src="/images/da-vinci-mark.webp"
+                  alt="da Vinci Dental Works crest"
+                  fill
+                  priority
+                  sizes="36px"
+                  className="object-cover"
+                />
               </span>
-              <span
-                className={`mt-1 text-[10px] font-bold uppercase tracking-[3px] leading-none ${
-                  scrolled ? "text-[var(--mute)]" : "text-white/80"
-                }`}
-              >
-                {siteConfig.brand.subName}
+              <span className="font-[family-name:var(--font-heading)] text-[11px] sm:text-lg md:text-[22px] font-medium uppercase tracking-[0.08em] sm:tracking-[0.16em] md:tracking-[0.22em] text-[#FAF8F4] whitespace-nowrap">
+                {siteConfig.brand.name}
               </span>
-            </span>
-          </Link>
+            </Link>
 
-          {/* Desktop 1440px inline navigation */}
+            <button
+              ref={triggerRef}
+              type="button"
+              aria-label="Open navigation menu"
+              aria-expanded={drawerOpen}
+              aria-controls="site-drawer"
+              onClick={() => setDrawerOpen(true)}
+              className="flex h-11 w-11 shrink-0 items-center justify-center text-[#DFC38C] transition-colors hover:text-[#FAF8F4] cursor-pointer"
+            >
+              <span className="flex w-5 flex-col gap-[5px]">
+                <span className="block h-[1.5px] w-full bg-current" />
+                <span className="block h-[1.5px] w-full bg-current" />
+                <span className="block h-[1.5px] w-full bg-current" />
+              </span>
+            </button>
+          </div>
+
+          {/* Desktop gold hairline divider */}
+          <div
+            className="hidden md:block mx-auto h-px w-full max-w-4xl bg-gradient-to-r from-transparent via-[#C9A96E]/60 to-transparent"
+            aria-hidden="true"
+          />
+
+          {/* Desktop centered secondary row navigation */}
           <nav
             aria-label="Primary"
-            className="hidden md:flex items-center gap-7 lg:gap-9"
+            className="hidden md:flex h-[48px] items-center justify-center gap-8 lg:gap-12"
           >
             {siteConfig.nav.map((item) =>
               item.children ? (
@@ -154,16 +164,16 @@ export function SiteHeader() {
                 >
                   <Link
                     href={item.href}
-                    className="inline-flex min-h-[44px] items-center text-[15px] font-bold uppercase tracking-[1.5px] text-current transition-colors hover:text-[var(--accent)]"
+                    className="inline-flex min-h-[44px] items-center text-[12px] lg:text-[13px] font-medium uppercase tracking-[0.22em] text-[#DFC38C] transition-colors hover:text-[#FAF8F4]"
                   >
                     {item.label}
                   </Link>
-                  <div className="nav-dropdown-menu invisible absolute left-0 top-full min-w-[240px] translate-y-1 bg-[var(--dark-deep)] py-3 opacity-0 shadow-lg transition-all duration-200">
+                  <div className="nav-dropdown-menu invisible absolute left-1/2 top-full min-w-[240px] -translate-x-1/2 translate-y-1 border border-[#C9A96E]/25 bg-[#090908]/95 py-2.5 opacity-0 shadow-2xl backdrop-blur-md transition-all duration-200">
                     {item.children.map((child) => (
                       <Link
                         key={child.href}
                         href={child.href}
-                        className="flex min-h-[44px] items-center px-5 text-[14px] font-medium uppercase tracking-[1.2px] text-[var(--on-dark)] transition-colors hover:text-[var(--accent)]"
+                        className="flex min-h-[44px] items-center px-5 text-[12px] font-medium uppercase tracking-[0.16em] text-[#FAF8F4]/90 transition-colors hover:bg-[#C9A96E]/10 hover:text-[#DFC38C]"
                       >
                         {child.label}
                       </Link>
@@ -174,30 +184,13 @@ export function SiteHeader() {
                 <Link
                   key={item.label}
                   href={item.href}
-                  className="action-link text-[15px] tracking-[1.5px] text-current"
+                  className="inline-flex min-h-[44px] items-center text-[12px] lg:text-[13px] font-semibold uppercase tracking-[0.22em] text-[#DFC38C] transition-colors hover:text-[#FAF8F4] border-b border-[#C9A96E]/50 hover:border-[#FAF8F4]"
                 >
                   {item.label}
                 </Link>
               )
             )}
           </nav>
-
-          {/* Far-right hamburger toggle */}
-          <button
-            ref={triggerRef}
-            type="button"
-            aria-label="Open navigation menu"
-            aria-expanded={drawerOpen}
-            aria-controls="site-drawer"
-            onClick={() => setDrawerOpen(true)}
-            className="flex h-11 w-11 shrink-0 items-center justify-center text-current transition-colors hover:text-[var(--accent)] cursor-pointer"
-          >
-            <span className="flex w-6 flex-col gap-[5px]">
-              <span className="block h-[1.5px] w-full bg-current" />
-              <span className="block h-[1.5px] w-full bg-current" />
-              <span className="block h-[1.5px] w-full bg-current" />
-            </span>
-          </button>
         </div>
       </header>
 

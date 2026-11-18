@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { BackgroundSlideshow } from "@/components/home/BackgroundSlideshow";
-import { HeroMedia } from "@/components/home/HeroMedia";
+import { LuxuryHero } from "@/components/home/HeroMedia";
 import { BeforeAfterGrid } from "@/components/sections/BeforeAfterGrid";
 import { LuxuryCarousel } from "@/components/ui/LuxuryCarousel";
 import { ActionLink, Container, Reveal, Section } from "@/components/ui/Primitives";
@@ -23,61 +23,72 @@ export default function HomePage() {
 
   return (
     <>
-      {/* 1. Hero (100svh, separate desktop landscape & mobile vertical sources + poster fallback) */}
-      <section className="relative flex min-h-svh items-end bg-[var(--dark-deep)] text-[var(--on-dark)]">
-        <HeroMedia
-          desktopPoster={hero.desktopPoster}
-          mobilePoster={hero.mobilePoster}
-          desktopVideo={hero.desktopVideo}
-          mobileVideo={hero.mobileVideo}
-        />
-        <Container className="relative z-10 pt-[calc(var(--header-h)+24px)] pb-14 md:pb-20">
-          <div className="max-w-3xl">
-            <h1 className="text-4xl md:text-6xl">{hero.heading}</h1>
-            <p className="mt-4 max-w-xl text-base md:text-lg text-white/85">
-              {hero.subtitle}
-            </p>
-            <div className="mt-6">
-              <ActionLink href={hero.ctaHref} dark>
-                {hero.ctaLabel}
-              </ActionLink>
-            </div>
-          </div>
-        </Container>
-      </section>
+      {/* 1. Luxury Editorial Hero (GSAP choreography + Dr. Shuaib Malik media + floating museum gallery) */}
+      <LuxuryHero
+        heading={hero.heading}
+        subtitle={hero.subtitle}
+        ctaLabel={hero.ctaLabel}
+        ctaHref={hero.ctaHref}
+      />
 
-      {/* 2. Experience Intro + Three Feature Panels (wide on desktop, 1:1 square on mobile) */}
-      <Section id="experience">
+      {/* 2a. Editorial Obsidian Intro Split (matching attached luxury layout) */}
+      <Section
+        id="experience"
+        dark
+        className="border-t border-b border-[var(--line-dark)]"
+      >
         <Container>
-          <Reveal className="mx-auto max-w-2xl text-center">
-            <h2 className="text-2xl md:text-3xl">{experienceIntro.heading}</h2>
-            <p className="mt-4 text-[var(--mute)]">{experienceIntro.subtitle}</p>
+          <Reveal className="grid grid-cols-1 items-start gap-6 md:grid-cols-12 md:gap-12">
+            <div className="md:col-span-5">
+              <div
+                className="mb-4 h-px w-12 bg-[var(--accent)]"
+                aria-hidden="true"
+              />
+              <h2 className="text-2xl md:text-4xl font-medium leading-tight text-[#FAF8F4]">
+                {experienceIntro.heading}
+              </h2>
+            </div>
+            <div className="md:col-span-7 md:pt-5">
+              <p className="text-base md:text-lg leading-relaxed text-[#FAF8F4]/80">
+                {experienceIntro.subtitle}
+              </p>
+            </div>
           </Reveal>
+        </Container>
+      </Section>
 
-          <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-3 md:gap-7">
-            {featurePanels.map((panel) => (
+      {/* 2b. Three Feature Panels on Warm Ivory White */}
+      <Section>
+        <Container>
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-3 md:gap-7">
+            {featurePanels.map((panel, idx) => (
               <Reveal key={panel.title}>
                 <article className="group flex flex-col">
                   <Link
                     href={panel.href}
-                    className="relative block w-full overflow-hidden bg-[var(--dark)] aspect-square md:aspect-[16/10]"
+                    className="relative block w-full overflow-hidden border border-[#C9A96E]/30 bg-[var(--dark)] aspect-square md:aspect-[16/10] shadow-[0_14px_38px_rgba(17,17,16,0.08)]"
                   >
                     <Image
                       src={panel.image}
                       alt={panel.alt}
                       fill
                       sizes="(max-width: 767px) 100vw, 33vw"
-                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                     />
                   </Link>
-                  <h3 className="mt-5 text-xl">
-                    <Link
-                      href={panel.href}
-                      className="hover:text-[var(--accent)] transition-colors"
-                    >
-                      {panel.title}
-                    </Link>
-                  </h3>
+                  <div className="mt-5 flex items-baseline justify-between gap-3">
+                    <h3 className="text-xl md:text-2xl">
+                      <Link
+                        href={panel.href}
+                        className="hover:text-[var(--accent-dark)] transition-colors"
+                      >
+                        {panel.title}
+                      </Link>
+                    </h3>
+                    <span className="text-[11px] font-semibold tracking-[0.22em] text-[#9B7C44]">
+                      0{idx + 1}
+                    </span>
+                  </div>
                   <p className="mt-2 text-base text-[var(--mute)]">
                     {panel.copy}
                   </p>

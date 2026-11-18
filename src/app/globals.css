@@ -30,7 +30,7 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 2px;
-    line-height: 1.2;
+    line-height: 1.15;
     margin: 0;
   }
 
@@ -62,7 +62,7 @@
   min-height: 100svh;
 }
 
-/* Signature left-to-right #A2D1DC underline wipe (hover-capable pointers only) */
+/* Signature left-to-right champagne gold (#C9A96E) underline wipe (hover-capable pointers only) */
 .action-link {
   position: relative;
   display: inline-flex;
@@ -70,9 +70,9 @@
   min-height: 44px;
   padding: 5px 8px 4px;
   font-family: var(--font-body), system-ui, sans-serif;
-  font-size: 16px;
-  font-weight: 700;
-  letter-spacing: 2px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   text-decoration: none;
   background: transparent;

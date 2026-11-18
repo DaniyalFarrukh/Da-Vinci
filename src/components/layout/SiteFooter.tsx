@@ -5,10 +5,10 @@ import { Container } from "@/components/ui/Primitives";
 
 export function SiteFooter() {
   return (
-    <footer className="bg-[var(--dark)] text-[var(--on-dark)] pt-16 pb-10">
+    <footer className="bg-[var(--dark-deep)] text-[var(--on-dark)] border-t border-[var(--line-dark)] pt-16 pb-10">
       <Container>
         <div className="flex flex-col items-center text-center">
-          <p className="font-[family-name:var(--font-heading)] text-sm font-bold uppercase tracking-[3px] text-white/85">
+          <p className="font-[family-name:var(--font-body)] text-xs font-semibold uppercase tracking-[0.26em] text-[#DFC38C]">
             There’s only one {siteConfig.brand.name}
           </p>
 
@@ -16,7 +16,7 @@ export function SiteFooter() {
             href="/"
             className="mt-5 inline-flex min-h-[44px] flex-col items-center justify-center gap-3 text-[var(--on-dark)] no-underline"
           >
-            <span className="relative h-24 w-20 overflow-hidden rounded-[12%] border border-white/20 shadow-lg">
+            <span className="relative h-24 w-20 overflow-hidden rounded-[12%] border border-[#C9A96E]/45 shadow-[0_0_24px_rgba(201,169,110,0.16)]">
               <Image
                 src="/images/da-vinci-crest.webp"
                 alt="da Vinci Dental Works crest"
@@ -25,10 +25,10 @@ export function SiteFooter() {
                 className="object-cover"
               />
             </span>
-            <span className="font-[family-name:var(--font-heading)] text-3xl font-bold uppercase tracking-[4px]">
+            <span className="font-[family-name:var(--font-heading)] text-3xl font-medium uppercase tracking-[0.2em]">
               {siteConfig.brand.shortName}
             </span>
-            <span className="text-xs font-bold uppercase tracking-[4px] text-white/75">
+            <span className="text-xs font-medium uppercase tracking-[0.28em] text-[#DFC38C]">
               {siteConfig.brand.subName}
             </span>
           </Link>

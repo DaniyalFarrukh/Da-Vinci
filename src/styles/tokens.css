@@ -1,17 +1,19 @@
 :root {
-  /* Palette (matching observed apaaesthetic.com tokens) */
-  --bg: #fafaf4;
-  --ink: #1a1a1a;
-  --mute: #4a4a46;
-  --accent: #a2d1dc;
-  --dark: #1a1a1a;
-  --dark-deep: #000000;
-  --on-dark: #ffffff;
-  --line: rgba(26, 26, 26, 0.16);
-  --line-dark: rgba(255, 255, 255, 0.22);
+  /* White, Champagne Gold & Obsidian Black Luxury Palette */
+  --bg: #faf8f4;
+  --ink: #111110;
+  --mute: #57534a;
+  --accent: #c9a96e;
+  --accent-light: #dfc38c;
+  --accent-dark: #9b7c44;
+  --dark: #141413;
+  --dark-deep: #090908;
+  --on-dark: #faf8f4;
+  --line: rgba(17, 17, 16, 0.14);
+  --line-dark: rgba(201, 169, 110, 0.24);
 
   /* Layout & Spacing */
-  --header-h: 88px;
+  --header-h: 72px;
   --container-max: 1400px;
   --gutter-mobile: 20px;
   --gutter-desktop: 28px;
@@ -29,4 +31,10 @@
   --ease-wipe: cubic-bezier(0.22, 1, 0.36, 1);
   --dur-wipe: 0.4s;
   --dur-reveal: 1s;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --header-h: 112px;
+  }
 }
