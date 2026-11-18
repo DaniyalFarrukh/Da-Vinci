@@ -81,7 +81,7 @@ export function LuxuryCarousel({
                 src={item.src}
                 alt={item.alt}
                 fill
-                quality={95}
+                quality={100}
                 sizes="(max-width: 767px) 100vw, 80vw"
                 className="object-cover contrast-[1.03] saturate-[1.04]"
               />

@@ -81,6 +81,7 @@ export default function FounderPage() {
                     src={item.image}
                     alt={item.alt}
                     fill
+                    quality={100}
                     sizes="(max-width: 767px) 100vw, 50vw"
                     className="object-cover"
                   />

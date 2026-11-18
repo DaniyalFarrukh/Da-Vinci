@@ -119,6 +119,7 @@ export function SiteHeader() {
                   alt="da Vinci Dental Works crest"
                   fill
                   priority
+                  quality={100}
                   sizes="36px"
                   className="object-cover"
                 />

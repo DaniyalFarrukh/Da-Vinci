@@ -36,6 +36,7 @@ export function BackgroundSlideshow({ slides }: { slides: readonly Slide[] }) {
             src={slide.src}
             alt={slide.alt}
             fill
+            quality={100}
             sizes="100vw"
             className="object-cover"
           />

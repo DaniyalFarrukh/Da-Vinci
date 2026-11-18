@@ -28,6 +28,7 @@ export default function LocationsPage() {
                       src={loc.image}
                       alt={`${loc.city} studio`}
                       fill
+                      quality={100}
                       sizes="(max-width: 767px) 100vw, 50vw"
                       className="object-cover"
                     />

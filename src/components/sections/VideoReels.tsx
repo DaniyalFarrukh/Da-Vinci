@@ -48,7 +48,7 @@ export function VideoReels() {
       {REELS.map((reel) => (
         <figure
           key={reel.src}
-          className="relative aspect-[9/16] overflow-hidden bg-[var(--dark-deep)]"
+          className="relative aspect-[9/16] overflow-hidden border border-[#C9A96E]/30 bg-[var(--dark-deep)] shadow-[0_14px_38px_rgba(17,17,16,0.12)]"
         >
           <video
             className="h-full w-full object-cover"

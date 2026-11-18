@@ -58,6 +58,7 @@ export function TeamGrid() {
               src={member.image}
               alt={member.alt}
               fill
+              quality={100}
               sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 25vw"
               className="object-cover"
             />

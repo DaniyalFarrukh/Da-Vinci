@@ -210,7 +210,7 @@ export function LuxuryHero({
                   alt={slide.alt}
                   fill
                   priority={idx === 0}
-                  quality={95}
+                  quality={100}
                   sizes="100vw"
                   className="object-cover object-top contrast-[1.06] saturate-[1.04]"
                 />

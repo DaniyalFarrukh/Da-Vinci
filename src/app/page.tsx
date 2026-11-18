@@ -72,6 +72,7 @@ export default function HomePage() {
                       src={panel.image}
                       alt={panel.alt}
                       fill
+                      quality={100}
                       sizes="(max-width: 767px) 100vw, 33vw"
                       className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                     />
@@ -187,6 +188,7 @@ export default function HomePage() {
                 src={step.image}
                 alt={step.alt}
                 fill
+                quality={100}
                 sizes="(max-width: 767px) 100vw, 33vw"
                 className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
               />
@@ -217,6 +219,7 @@ export default function HomePage() {
                   src={founderQuote.image}
                   alt={founderQuote.alt}
                   fill
+                  quality={100}
                   sizes="(max-width: 767px) 100vw, 50vw"
                   className="object-cover grayscale contrast-105"
                 />
@@ -298,6 +301,7 @@ export default function HomePage() {
                     src={tile.image}
                     alt={tile.alt}
                     fill
+                    quality={100}
                     sizes="(max-width: 767px) 100vw, 33vw"
                     className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                   />

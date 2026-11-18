@@ -29,6 +29,7 @@ export function BlogList() {
                 src={post.image}
                 alt={post.alt}
                 fill
+                quality={100}
                 sizes="(max-width: 767px) 100vw, 33vw"
                 className="object-cover"
               />

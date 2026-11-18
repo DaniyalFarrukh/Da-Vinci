@@ -11,8 +11,8 @@ export function BeforeAfterGrid() {
               src={item.beforeImage}
               alt={`${item.title} — before treatment`}
               fill
-              quality={92}
-              sizes="(max-width: 767px) 100vw, 320px"
+              quality={100}
+              sizes="(max-width: 767px) 100vw, 480px"
               className="ba-photo-img object-cover"
             />
             <span className="ba-tag">Before</span>
@@ -22,8 +22,8 @@ export function BeforeAfterGrid() {
               src={item.afterImage}
               alt={`${item.title} — after treatment`}
               fill
-              quality={92}
-              sizes="(max-width: 767px) 100vw, 320px"
+              quality={100}
+              sizes="(max-width: 767px) 100vw, 480px"
               className="ba-photo-img object-cover"
             />
             <span className="ba-tag">After</span>

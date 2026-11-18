@@ -21,6 +21,7 @@ export function SiteFooter() {
                 src="/images/da-vinci-crest.webp"
                 alt="da Vinci Dental Works crest"
                 fill
+                quality={100}
                 sizes="80px"
                 className="object-cover"
               />

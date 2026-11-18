@@ -71,7 +71,7 @@ export function BeforeAfterSliderHero() {
         alt={`${current.title} — before treatment`}
         fill
         priority
-        quality={95}
+        quality={100}
         sizes="100vw"
         className="object-cover grayscale contrast-[1.06]"
       />
@@ -86,7 +86,7 @@ export function BeforeAfterSliderHero() {
           alt={`${current.title} — after treatment`}
           fill
           priority
-          quality={95}
+          quality={100}
           sizes="100vw"
           className="object-cover contrast-[1.06] brightness-[1.05] saturate-[1.08]"
         />
