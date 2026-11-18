@@ -31,11 +31,11 @@ export function PageHero({
         className={`object-cover ${grayscale ? "grayscale contrast-105" : ""}`}
       />
       <div
-        className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/45 to-black/30"
+        className="absolute inset-0 bg-gradient-to-t from-[#090908]/90 via-[#090908]/45 to-[#090908]/75"
         aria-hidden="true"
       />
       <Container className="relative z-10 pt-[calc(var(--header-h)+32px)] pb-14 md:pb-20">
-        <div className="max-w-2xl">
+        <div className="max-w-2xl border-l-2 border-[#C9A96E] pl-6">
           <h1 className="text-4xl md:text-6xl">{title}</h1>
           <p className="mt-4 text-base md:text-lg text-white/85">{subtitle}</p>
           {ctaLabel && ctaHref && (
@@ -107,6 +107,7 @@ export function SplitBand({
       <Container>
         <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-14">
           <Reveal className={imageFirst ? "md:order-2" : "md:order-1"}>
+            <div className="mb-4 h-px w-10 bg-[#C9A96E]" aria-hidden="true" />
             <h2 className="text-2xl md:text-3xl">{heading}</h2>
             <div
               className={`mt-5 space-y-4 ${
@@ -127,7 +128,7 @@ export function SplitBand({
           </Reveal>
 
           <Reveal className={imageFirst ? "md:order-1" : "md:order-2"}>
-            <div className="relative aspect-[4/3] w-full overflow-hidden bg-[var(--dark)]">
+            <div className="relative aspect-[4/3] w-full overflow-hidden border border-[#C9A96E]/35 bg-[var(--dark)] shadow-[0_18px_50px_rgba(0,0,0,0.16)]">
               <Image
                 src={image}
                 alt={alt}
@@ -157,7 +158,7 @@ export function TransformationShowcase() {
           {cases.map((item) => (
             <article
               key={item.id}
-              className="group relative aspect-[4/3] overflow-hidden bg-[var(--dark)]"
+              className="group relative aspect-[4/3] overflow-hidden border border-[#C9A96E]/30 bg-[var(--dark)] shadow-[0_14px_38px_rgba(17,17,16,0.1)]"
             >
               <Image
                 src={item.image}
@@ -174,7 +175,9 @@ export function TransformationShowcase() {
                 <span className="font-[family-name:var(--font-heading)] text-base font-bold uppercase tracking-[2px]">
                   {item.label}
                 </span>
-                <p className="mt-1 text-xs text-white/75">{item.note}</p>
+                <p className="mt-1 text-xs font-semibold uppercase tracking-[0.18em] text-[#DFC38C]">
+                  {item.note}
+                </p>
               </div>
             </article>
           ))}

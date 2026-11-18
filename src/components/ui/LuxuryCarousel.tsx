@@ -62,7 +62,7 @@ export function LuxuryCarousel({
   return (
     <div className="relative w-full overflow-hidden">
       <div
-        className={`relative w-full overflow-hidden bg-[var(--dark)] ${aspectClass}`}
+        className={`relative w-full overflow-hidden border border-[#C9A96E]/35 bg-[var(--dark)] shadow-[0_24px_70px_rgba(0,0,0,0.45)] ${aspectClass}`}
       >
         {items.map((item, idx) => {
           const active = idx === index;
@@ -115,7 +115,7 @@ export function LuxuryCarousel({
               type="button"
               aria-label="Previous slide"
               onClick={prev}
-              className="absolute left-3 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center bg-black/50 text-white transition-colors hover:bg-black/80 hover:text-[var(--accent)] cursor-pointer"
+              className="absolute left-3 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-[#C9A96E]/40 bg-[#090908]/75 text-white backdrop-blur-sm transition-colors hover:bg-[#C9A96E] hover:text-[#090908] cursor-pointer"
             >
               ‹
             </button>
@@ -123,7 +123,7 @@ export function LuxuryCarousel({
               type="button"
               aria-label="Next slide"
               onClick={next}
-              className="absolute right-3 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center bg-black/50 text-white transition-colors hover:bg-black/80 hover:text-[var(--accent)] cursor-pointer"
+              className="absolute right-3 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-[#C9A96E]/40 bg-[#090908]/75 text-white backdrop-blur-sm transition-colors hover:bg-[#C9A96E] hover:text-[#090908] cursor-pointer"
             >
               ›
             </button>
@@ -152,8 +152,8 @@ export function LuxuryCarousel({
                 <span
                   className={`block h-[2px] transition-all duration-300 ${
                     active
-                      ? "w-7 bg-[var(--ink)]"
-                      : "w-4 bg-[var(--ink)]/30 hover:bg-[var(--accent)]"
+                      ? "w-8 bg-[#C9A96E]"
+                      : "w-4 bg-[#C9A96E]/35 hover:bg-[#C9A96E]/75"
                   }`}
                 />
               </button>

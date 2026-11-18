@@ -37,8 +37,8 @@ export function TeamGrid() {
               onClick={() => setActiveLoc(f.id)}
               className={`min-h-[44px] shrink-0 border px-5 py-2 text-xs font-bold uppercase tracking-[2px] transition-colors cursor-pointer ${
                 active
-                  ? "border-[var(--ink)] bg-[var(--ink)] text-[var(--on-dark)]"
-                  : "border-[var(--line)] bg-transparent text-[var(--ink)] hover:border-[var(--accent)]"
+                  ? "border-[#C9A96E] bg-[#C9A96E] text-[#090908]"
+                  : "border-[#C9A96E]/30 bg-transparent text-[var(--ink)] hover:border-[#C9A96E]"
               }`}
             >
               {f.label}

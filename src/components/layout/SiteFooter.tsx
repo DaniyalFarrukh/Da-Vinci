@@ -41,11 +41,17 @@ export function SiteFooter() {
           </p>
         </div>
 
+        {/* Gradient gold hairline divider */}
+        <div
+          className="mt-12 h-px w-full bg-gradient-to-r from-transparent via-[#C9A96E]/45 to-transparent"
+          aria-hidden="true"
+        />
+
         {/* 4-column location grid on desktop, 1-column stacked on mobile */}
-        <div className="mt-12 grid grid-cols-1 gap-8 border-t border-[var(--line-dark)] pt-10 text-center md:grid-cols-4 md:text-left">
+        <div className="grid grid-cols-1 gap-8 pt-10 text-center md:grid-cols-4 md:text-left">
           {siteConfig.locations.map((loc) => (
             <div key={loc.id} className="space-y-1.5">
-              <h4 className="font-[family-name:var(--font-heading)] text-lg font-bold uppercase tracking-[2px] text-[var(--on-dark)]">
+              <h4 className="font-[family-name:var(--font-heading)] text-lg font-bold uppercase tracking-[2px] text-[#DFC38C]">
                 {loc.city}
               </h4>
               <p className="text-sm text-white/75">{loc.addressLine1}</p>
@@ -63,7 +69,11 @@ export function SiteFooter() {
         </div>
 
         {/* Socials & Legal Bar */}
-        <div className="mt-12 flex flex-col items-center justify-between gap-6 border-t border-[var(--line-dark)] pt-8 md:flex-row">
+        <div
+          className="mt-12 h-px w-full bg-gradient-to-r from-transparent via-[#C9A96E]/40 to-transparent"
+          aria-hidden="true"
+        />
+        <div className="flex flex-col items-center justify-between gap-6 pt-8 md:flex-row">
           <div className="flex items-center gap-6">
             {siteConfig.socials.map((soc) => (
               <a

@@ -163,8 +163,9 @@
   font-size: 11px;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: #ffffff;
-  background: rgba(0, 0, 0, 0.52);
+  color: #dfc38c;
+  background: rgba(9, 9, 8, 0.86);
+  border: 1px solid rgba(201, 169, 110, 0.42);
   padding: 3px 9px;
 }
 
@@ -204,8 +205,9 @@
   width: 46px;
   height: 46px;
   border-radius: 9999px;
-  background: #ffffff;
-  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
+  background: #faf8f4;
+  border: 2px solid #c9a96e;
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.45);
 }
 
 .ba-slider-knob::before,

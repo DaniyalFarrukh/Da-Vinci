@@ -28,7 +28,7 @@ export default function TestimonialsPage() {
           <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-3">
             {testimonialItems.map((item) => (
               <Reveal key={item.id}>
-                <article className="flex flex-col border border-[var(--line)] bg-white/60">
+                <article className="flex flex-col border border-[#C9A96E]/30 bg-white shadow-[0_14px_38px_rgba(17,17,16,0.06)]">
                   <div className="relative aspect-[4/3] w-full overflow-hidden bg-[var(--dark)]">
                     <Image
                       src={item.image}

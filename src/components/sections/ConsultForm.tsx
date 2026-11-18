@@ -88,7 +88,7 @@ export function ConsultForm({
     <form
       onSubmit={onSubmit}
       noValidate
-      className="mx-auto max-w-xl space-y-5"
+      className="mx-auto max-w-xl space-y-5 border border-[#C9A96E]/30 bg-[#111110] p-6 md:p-10 shadow-[0_24px_70px_rgba(0,0,0,0.5)]"
     >
       {formError && (
         <div
@@ -130,7 +130,7 @@ export function ConsultForm({
           onChange={(e) => setName(e.target.value)}
           aria-invalid={Boolean(fieldErrors.name)}
           aria-describedby={fieldErrors.name ? "err-name" : undefined}
-          className="w-full border border-[var(--line-dark)] bg-white px-4 py-3 text-[var(--ink)]"
+          className="w-full border border-[#C9A96E]/25 bg-[#1A1A18] px-4 py-3 text-[#FAF8F4] placeholder:text-white/40 transition-colors focus:border-[#C9A96E] focus:outline-none"
         />
         {fieldErrors.name && (
           <p id="err-name" role="alert" className="mt-1.5 text-sm text-red-300">
@@ -156,7 +156,7 @@ export function ConsultForm({
           onChange={(e) => setEmail(e.target.value)}
           aria-invalid={Boolean(fieldErrors.email)}
           aria-describedby={fieldErrors.email ? "err-email" : undefined}
-          className="w-full border border-[var(--line-dark)] bg-white px-4 py-3 text-[var(--ink)]"
+          className="w-full border border-[#C9A96E]/25 bg-[#1A1A18] px-4 py-3 text-[#FAF8F4] placeholder:text-white/40 transition-colors focus:border-[#C9A96E] focus:outline-none"
         />
         {fieldErrors.email && (
           <p id="err-email" role="alert" className="mt-1.5 text-sm text-red-300">
@@ -180,7 +180,7 @@ export function ConsultForm({
             autoComplete="tel-country-code"
             value={countryCode}
             onChange={(e) => setCountryCode(e.target.value)}
-            className="w-full border border-[var(--line-dark)] bg-white px-3 py-3 text-[var(--ink)]"
+            className="w-full border border-[#C9A96E]/25 bg-[#1A1A18] px-3 py-3 text-[#FAF8F4] transition-colors focus:border-[#C9A96E] focus:outline-none"
           >
             {COUNTRY_CODES.map((c) => (
               <option key={c.code} value={c.code}>
@@ -199,7 +199,7 @@ export function ConsultForm({
             onChange={(e) => setPhone(e.target.value)}
             aria-invalid={Boolean(fieldErrors.phone)}
             aria-describedby={fieldErrors.phone ? "err-phone" : undefined}
-            className="w-full border border-[var(--line-dark)] bg-white px-4 py-3 text-[var(--ink)]"
+            className="w-full border border-[#C9A96E]/25 bg-[#1A1A18] px-4 py-3 text-[#FAF8F4] placeholder:text-white/40 transition-colors focus:border-[#C9A96E] focus:outline-none"
           />
         </div>
         {fieldErrors.phone && (
@@ -228,7 +228,7 @@ export function ConsultForm({
             aria-describedby={
               fieldErrors.streetAddress ? "err-street" : undefined
             }
-            className="w-full border border-[var(--line-dark)] bg-white px-4 py-3 text-[var(--ink)]"
+            className="w-full border border-[#C9A96E]/25 bg-[#1A1A18] px-4 py-3 text-[#FAF8F4] placeholder:text-white/40 transition-colors focus:border-[#C9A96E] focus:outline-none"
           />
           {fieldErrors.streetAddress && (
             <p
@@ -255,7 +255,7 @@ export function ConsultForm({
               onChange={(e) => setCity(e.target.value)}
               aria-invalid={Boolean(fieldErrors.city)}
               aria-describedby={fieldErrors.city ? "err-city" : undefined}
-              className="w-full border border-[var(--line-dark)] bg-white px-4 py-3 text-[var(--ink)]"
+              className="w-full border border-[#C9A96E]/25 bg-[#1A1A18] px-4 py-3 text-[#FAF8F4] placeholder:text-white/40 transition-colors focus:border-[#C9A96E] focus:outline-none"
             />
             {fieldErrors.city && (
               <p
@@ -280,7 +280,7 @@ export function ConsultForm({
               onChange={(e) => setState(e.target.value)}
               aria-invalid={Boolean(fieldErrors.state)}
               aria-describedby={fieldErrors.state ? "err-state" : undefined}
-              className="w-full border border-[var(--line-dark)] bg-white px-4 py-3 text-[var(--ink)]"
+              className="w-full border border-[#C9A96E]/25 bg-[#1A1A18] px-4 py-3 text-[#FAF8F4] placeholder:text-white/40 transition-colors focus:border-[#C9A96E] focus:outline-none"
             />
             {fieldErrors.state && (
               <p
@@ -307,7 +307,7 @@ export function ConsultForm({
               aria-describedby={
                 fieldErrors.postalCode ? "err-postal" : undefined
               }
-              className="w-full border border-[var(--line-dark)] bg-white px-4 py-3 text-[var(--ink)]"
+              className="w-full border border-[#C9A96E]/25 bg-[#1A1A18] px-4 py-3 text-[#FAF8F4] placeholder:text-white/40 transition-colors focus:border-[#C9A96E] focus:outline-none"
             />
             {fieldErrors.postalCode && (
               <p
@@ -335,7 +335,7 @@ export function ConsultForm({
           required
           value={doctor}
           onChange={(e) => setDoctor(e.target.value)}
-          className="w-full border border-[var(--line-dark)] bg-white px-4 py-3 text-[var(--ink)]"
+          className="w-full border border-[#C9A96E]/25 bg-[#1A1A18] px-4 py-3 text-[#FAF8F4] placeholder:text-white/40 transition-colors focus:border-[#C9A96E] focus:outline-none"
         >
           {teamMembers.map((m) => (
             <option key={m.id} value={m.name}>
@@ -359,7 +359,7 @@ export function ConsultForm({
           placeholder="Tell us about your smile goals or preferred consultation dates"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-          className="w-full border border-[var(--line-dark)] bg-white px-4 py-3 text-[var(--ink)]"
+          className="w-full border border-[#C9A96E]/25 bg-[#1A1A18] px-4 py-3 text-[#FAF8F4] placeholder:text-white/40 transition-colors focus:border-[#C9A96E] focus:outline-none"
         />
       </div>
 
@@ -367,7 +367,7 @@ export function ConsultForm({
         <button
           type="submit"
           disabled={submitting}
-          className="min-h-[48px] w-full border border-[var(--on-dark)] bg-transparent px-6 py-3 font-[family-name:var(--font-body)] text-sm font-bold uppercase tracking-[2px] text-[var(--on-dark)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)] disabled:opacity-50 cursor-pointer"
+          className="min-h-[48px] w-full border border-[#C9A96E] bg-[#C9A96E] px-6 py-3 font-[family-name:var(--font-body)] text-sm font-bold uppercase tracking-[2px] text-[#090908] shadow-[0_8px_24px_rgba(201,169,110,0.22)] transition-colors hover:border-[#DFC38C] hover:bg-[#DFC38C] disabled:opacity-50 cursor-pointer"
         >
           {submitting ? "Submitting..." : "Submit Request"}
         </button>

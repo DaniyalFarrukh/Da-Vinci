@@ -20,7 +20,7 @@ export default function ScheduleAConsultHubPage() {
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
             {siteConfig.locations.map((loc) => (
               <Reveal key={loc.id}>
-                <article className="flex flex-col border border-[var(--line)] bg-white/60">
+                <article className="flex flex-col border border-[#C9A96E]/30 bg-white shadow-[0_14px_38px_rgba(17,17,16,0.06)]">
                   <div className="relative aspect-[16/9] w-full overflow-hidden bg-[var(--dark)]">
                     <Image
                       src={loc.image}

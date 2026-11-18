@@ -133,7 +133,7 @@ export function BeforeAfterSliderHero() {
           setInteracted(true);
           setIndex((i) => (i - 1 + cases.length) % cases.length);
         }}
-        className="absolute left-4 top-[42%] z-20 flex h-11 w-11 items-center justify-center rounded-full bg-black/50 text-2xl text-white transition-colors hover:bg-black/80 hover:text-[var(--accent)] cursor-pointer"
+        className="absolute left-4 top-[42%] z-20 flex h-11 w-11 items-center justify-center rounded-full border border-[#C9A96E]/40 bg-[#090908]/75 text-2xl text-white backdrop-blur-sm transition-colors hover:bg-[#C9A96E] hover:text-[#090908] cursor-pointer"
       >
         ‹
       </button>
@@ -145,7 +145,7 @@ export function BeforeAfterSliderHero() {
           setInteracted(true);
           setIndex((i) => (i + 1) % cases.length);
         }}
-        className="absolute right-4 top-[42%] z-20 flex h-11 w-11 items-center justify-center rounded-full bg-black/50 text-2xl text-white transition-colors hover:bg-black/80 hover:text-[var(--accent)] cursor-pointer"
+        className="absolute right-4 top-[42%] z-20 flex h-11 w-11 items-center justify-center rounded-full border border-[#C9A96E]/40 bg-[#090908]/75 text-2xl text-white backdrop-blur-sm transition-colors hover:bg-[#C9A96E] hover:text-[#090908] cursor-pointer"
       >
         ›
       </button>
@@ -166,7 +166,7 @@ export function BeforeAfterSliderHero() {
               setIndex(idx);
             }}
             className={`h-2.5 w-2.5 rounded-full transition-colors cursor-pointer ${
-              idx === index ? "bg-white" : "bg-white/45 hover:bg-white/80"
+              idx === index ? "bg-[#C9A96E]" : "bg-white/45 hover:bg-[#C9A96E]/80"
             }`}
           />
         ))}

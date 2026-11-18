@@ -74,7 +74,7 @@ export default function FounderPage() {
             {buzzItems.slice(0, 4).map((item) => (
               <article
                 key={item.id}
-                className="flex flex-col border border-[var(--line)] bg-white/60"
+                className="flex flex-col border border-[#C9A96E]/30 bg-white shadow-[0_14px_38px_rgba(17,17,16,0.06)]"
               >
                 <div className="relative aspect-[16/10] w-full overflow-hidden bg-[var(--dark)]">
                   <Image
