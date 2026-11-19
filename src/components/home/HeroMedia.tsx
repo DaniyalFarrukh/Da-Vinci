@@ -1,11 +1,13 @@
 "use client";
 
 import gsap from "gsap";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 const HERO_VIDEO = {
   src: "/videos/hero-section-video.mp4",
+  poster: "/images/hero-poster.webp",
   alt: "da Vinci Dental Works hero showcase video",
 } as const;
 
@@ -60,7 +62,11 @@ export function LuxuryHero({
   useEffect(() => {
     const vid = videoRef.current;
     if (vid && !reducedMotion) {
-      vid.play().catch(() => {});
+      vid.defaultMuted = true;
+      vid.muted = true;
+      if (vid.paused) {
+        vid.play().catch(() => {});
+      }
     }
   }, [reducedMotion]);
 
@@ -69,12 +75,24 @@ export function LuxuryHero({
       ref={sectionRef}
       className="relative flex min-h-svh items-end overflow-hidden bg-[#090908] text-[#FAF8F4]"
     >
-      {/* Full-bleed hero section video only */}
+      {/* Full-bleed hero section video with instant first-frame poster */}
       <div className="absolute inset-0 overflow-hidden bg-[#090908]">
+        <Image
+          src={HERO_VIDEO.poster}
+          alt=""
+          fill
+          preload
+          quality={92}
+          sizes="100vw"
+          className="object-cover object-center brightness-[1.06] contrast-[1.06] saturate-[1.06]"
+          aria-hidden="true"
+        />
         {!reducedMotion && (
           <video
             ref={videoRef}
-            className="h-full w-full object-cover object-center brightness-[1.06] contrast-[1.06] saturate-[1.06]"
+            className="relative z-[1] h-full w-full object-cover object-center brightness-[1.06] contrast-[1.06] saturate-[1.06]"
+            src={HERO_VIDEO.src}
+            poster={HERO_VIDEO.poster}
             autoPlay
             muted
             loop
@@ -82,9 +100,7 @@ export function LuxuryHero({
             disablePictureInPicture
             preload="auto"
             aria-label={HERO_VIDEO.alt}
-          >
-            <source src={HERO_VIDEO.src} type="video/mp4" />
-          </video>
+          />
         )}
 
         {/* Architectural obsidian & subtle champagne-gold vignettes */}
